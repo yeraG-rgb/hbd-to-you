@@ -5,74 +5,134 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>hbd maxie &lt;3</title>
 <style>
-html,body{height:100%}body{font-family:Georgia,serif;background:linear-gradient(135deg,#041b3d,#0f2551 50%,#183372);color:#fff;margin:0;min-height:100vh;overflow-x:hidden;transition:background 1s ease}body.second-page{background:#941eb0}.star-bg,.particles{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none}.star-bg{z-index:0}.particles{z-index:3}.star{position:absolute;border-radius:50%;background:#fff;opacity:.8;animation:twinkle 3s infinite alternate}@keyframes twinkle{to{opacity:1}}.shooting-star{position:absolute;width:80px;height:2px;background:linear-gradient(90deg,#fff,transparent);animation:shoot 1.2s linear forwards;pointer-events:none}@keyframes shoot{to{opacity:0;transform:translateX(400px)}}.sun,.moon{position:fixed;top:30px;width:70px;height:70px;border-radius:50%;z-index:2;animation:float 8s ease-in-out infinite}.sun{left:30px;background:radial-gradient(circle,#ffd700,#ff8c00 70%,#ff4500)}.moon{right:30px;background:radial-gradient(circle,#f5f5f5,#bdc3c7 70%,#95a5a6);box-shadow:0 0 20px #bdc3c7}@keyframes float{50%{transform:translateY(20px)}}.main{position:relative;z-index:10;max-width:700px;margin:auto;padding:40px 10px 10px;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}.step{display:none}.step.active{display:block;animation:fadeIn .8s}@keyframes fadeIn{from{opacity:0}to{opacity:1}}h1.title{font-size:2.5rem;color:#fff;text-shadow:0 0 10px #a855f7;margin-bottom:20px;text-align:center}.message{font-size:1.2rem;color:#d1e3ff;margin-bottom:30px}.btn-row{display:flex;gap:20px;justify-content:center;margin:30px 0}button{font-size:1.1rem;padding:12px 32px;border:0;border-radius:8px;background:#1e3a8a;color:#fff;cursor:pointer;box-shadow:0 2px 8px #0003;transition:background .2s,transform .2s}button:hover{background:#3a6fc1;transform:scale(1.05)}.no-btn{background:#b366ff}.no-btn.shrink{width:60px!important}.record{width:180px;height:180px;background:url('4wiy9wx2cq.png') center/cover no-repeat,#222;border-radius:50%;margin:0 auto 20px;animation:spin 4s linear infinite paused;box-shadow:0 0 30px #0008;border:6px solid #222;cursor:pointer;transition:box-shadow .2s}.record:hover{box-shadow:0 0 40px #ffd700,0 0 60px #a855f7}.record.playing{animation-play-state:running}@keyframes spin{to{transform:rotate(360deg)}}.game-instructions{text-align:center;color:#fff;margin-bottom:12px}.game-canvas{display:block;width:min(500px,90vw);height:auto;margin:0 auto;border:4px solid #642176;image-rendering:pixelated;box-shadow:0 8px 24px #42124c66}.game-controls{text-align:center;margin:12px auto;color:#fff}.game-actions{text-align:center;min-height:50px}.cake{margin:0 auto 30px;position:relative;width:280px;height:220px}.cake-layer{border-radius:30px 30px 18px 18px;position:absolute;box-shadow:0 8px 25px #a855f766}.cake-bottom{width:280px;height:100px;bottom:0;background:linear-gradient(135deg,#a855f7,#9333ea)}.cake-middle{width:240px;height:60px;bottom:100px;left:20px;background:linear-gradient(135deg,#c084fc,#a78bfa)}.cake-top{width:200px;height:40px;bottom:160px;left:40px;background:linear-gradient(135deg,#e9d5ff,#d8b4fe)}.candles{position:absolute;inset:0;pointer-events:none}.candle-row{position:absolute;display:flex;justify-content:space-between;pointer-events:auto}.candle-row.top{top:18px}.candle-row.middle{top:78px}.candle-row.bottom{top:178px}.candle{width:10px;height:38px;background:linear-gradient(to top,#d8b3ff,#b366ff,#8a2be2);border-radius:5px 5px 2px 2px;position:relative;cursor:pointer;transition:opacity .3s}.candle .flame{position:absolute;top:-18px;left:50%;transform:translateX(-50%);width:14px;height:18px;background:radial-gradient(ellipse,#ffd700,#ff6b35 70%,transparent);border-radius:50%;animation:flicker .3s infinite alternate;box-shadow:0 0 8px #ffd700;pointer-events:none}@keyframes flicker{to{opacity:1;transform:translateX(-50%) scale(1.1) rotate(2deg)}}.candle-message{margin:18px 0;color:#fff;font-size:1.1rem;min-height:1.5em;text-align:center}.envelope{width:120px;height:80px;background:url('2v1g5wi779.png') center/cover no-repeat,#fff;margin:30px auto 0;cursor:pointer;transition:transform .2s;display:block;border:3px solid #ffd700;box-shadow:0 4px 24px #0005}.envelope.opened{transform:scale(1.1) rotate(-5deg)}.letter{display:none;background:#fff;color:#091539;border-radius:12px;box-shadow:0 4px 24px #0005;padding:30px 24px;margin:30px auto 0;max-width:400px;font-size:1.1rem;line-height:1.7}.letter.visible{display:block}.heart{position:absolute;color:#ec4899;font-size:1.5rem;opacity:.7;animation:floatHeart 5s infinite linear}@keyframes floatHeart{0%{opacity:0;transform:translateY(100vh)}10%,90%{opacity:1}100%{opacity:0;transform:translateY(-100px) rotate(360deg)}}@media(max-width:600px){.main{padding:10px}.cake{width:98vw;max-width:320px}.cake-bottom{width:90vw;max-width:280px}.cake-middle{width:80vw;max-width:240px}.cake-top{width:70vw;max-width:200px}.candle{width:7px;height:28px}}
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body { margin: 0; min-height: 100vh; overflow-x: hidden; color: #fff; font-family: Georgia, serif; background: linear-gradient(135deg,#041b3d,#0f2551 50%,#183372); transition: background 1s ease; }
+body.second-page { background: #941eb0; }
+.star-bg, .particles { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; }
+.star-bg { z-index: 0; }
+.particles { z-index: 3; }
+.star { position: absolute; border-radius: 50%; background: #fff; opacity: .8; animation: twinkle 3s infinite alternate; }
+@keyframes twinkle { to { opacity: 1; } }
+.sun, .moon { position: fixed; top: 30px; width: 70px; height: 70px; border-radius: 50%; z-index: 2; animation: float 8s ease-in-out infinite; }
+.sun { left: 30px; background: radial-gradient(circle,#ffd700,#ff8c00 70%,#ff4500); }
+.moon { right: 30px; background: radial-gradient(circle,#f5f5f5,#bdc3c7 70%,#95a5a6); box-shadow: 0 0 20px #bdc3c7; }
+@keyframes float { 50% { transform: translateY(20px); } }
+.main { position: relative; z-index: 10; max-width: 700px; min-height: 100vh; margin: auto; padding: 40px 10px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.step { display: none; width: 100%; }
+.step.active { display: block; animation: fadeIn .8s; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+h1.title { margin: 0 0 20px; color: #fff; font-size: 2.5rem; text-align: center; text-shadow: 0 0 10px #a855f7; }
+.message { margin-bottom: 30px; color: #d1e3ff; font-size: 1.2rem; text-align: center; }
+.btn-row { display: flex; justify-content: center; gap: 20px; margin: 30px 0; }
+button { padding: 12px 32px; border: 0; border-radius: 8px; background: #1e3a8a; color: #fff; font: inherit; font-size: 1.1rem; cursor: pointer; box-shadow: 0 2px 8px #0003; transition: background .2s, transform .2s; }
+button:hover { background: #3a6fc1; }
+.no-btn { background: #b366ff; }
+.no-btn.shrink { width: 60px !important; }
+.record { width: 180px; height: 180px; margin: 0 auto 20px; border: 6px solid #222; border-radius: 50%; background: url('4wiy9wx2cq.png') center/cover no-repeat,#222; animation: spin 4s linear infinite paused; box-shadow: 0 0 30px #0008; cursor: pointer; }
+.record.playing { animation-play-state: running; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.game-instructions, .game-controls { margin: 10px auto; text-align: center; }
+.game-canvas { display: block; width: min(480px, 94vw); height: auto; margin: 12px auto; border: 4px solid #642176; image-rendering: pixelated; box-shadow: 0 8px 24px #42124c66; touch-action: none; }
+.dpad { display: grid; grid-template-columns: repeat(3, 48px); grid-template-rows: repeat(2, 42px); justify-content: center; gap: 4px; margin: 10px auto; }
+.dpad button { padding: 4px; font-size: 1.2rem; }
+#maze-up { grid-column: 2; }
+#maze-left { grid-column: 1; grid-row: 2; }
+#maze-down { grid-column: 2; grid-row: 2; }
+#maze-right { grid-column: 3; grid-row: 2; }
+.game-actions { min-height: 52px; text-align: center; }
+.cake { position: relative; width: 280px; height: 220px; margin: 0 auto 30px; }
+.cake-layer { position: absolute; border-radius: 30px 30px 18px 18px; box-shadow: 0 8px 25px #a855f766; }
+.cake-bottom { bottom: 0; width: 280px; height: 100px; background: linear-gradient(135deg,#a855f7,#9333ea); }
+.cake-middle { bottom: 100px; left: 20px; width: 240px; height: 60px; background: linear-gradient(135deg,#c084fc,#a78bfa); }
+.cake-top { bottom: 160px; left: 40px; width: 200px; height: 40px; background: linear-gradient(135deg,#e9d5ff,#d8b4fe); }
+.candles { position: absolute; inset: 0; pointer-events: none; }
+.candle-row { position: absolute; display: flex; justify-content: space-between; pointer-events: auto; }
+.candle-row.top { top: 18px; }
+.candle-row.middle { top: 78px; }
+.candle-row.bottom { top: 178px; }
+.candle { position: relative; width: 10px; height: 38px; border-radius: 5px 5px 2px 2px; background: linear-gradient(to top,#d8b3ff,#b366ff,#8a2be2); cursor: pointer; transition: opacity .3s; }
+.candle .flame { position: absolute; top: -18px; left: 50%; width: 14px; height: 18px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(ellipse,#ffd700,#ff6b35 70%,transparent); animation: flicker .3s infinite alternate; box-shadow: 0 0 8px #ffd700; pointer-events: none; }
+@keyframes flicker { to { opacity: 1; transform: translateX(-50%) scale(1.1) rotate(2deg); } }
+.candle-message { min-height: 1.5em; margin: 18px 0; color: #fff; font-size: 1.1rem; text-align: center; }
+.envelope { display: block; width: 120px; height: 80px; margin: 30px auto 0; border: 3px solid #ffd700; background: url('2v1g5wi779.png') center/cover no-repeat,#fff; box-shadow: 0 4px 24px #0005; cursor: pointer; transition: transform .2s; }
+.envelope.opened { transform: scale(1.1) rotate(-5deg); }
+.letter { display: none; max-width: 400px; margin: 30px auto 0; padding: 30px 24px; border-radius: 12px; background: #fff; color: #091539; font-size: 1.1rem; line-height: 1.7; box-shadow: 0 4px 24px #0005; }
+.letter.visible { display: block; }
+.heart { position: absolute; color: #ec4899; font-size: 1.5rem; opacity: .7; animation: floatHeart 5s infinite linear; }
+@keyframes floatHeart { 0% { opacity: 0; transform: translateY(100vh); } 10%,90% { opacity: 1; } 100% { opacity: 0; transform: translateY(-100px) rotate(360deg); } }
+@media (max-width: 600px) { .main { padding: 16px 10px; } h1.title { font-size: 2rem; } .cake { width: 98vw; max-width: 320px; } .cake-bottom { width: 90vw; max-width: 280px; } .cake-middle { width: 80vw; max-width: 240px; } .cake-top { width: 70vw; max-width: 200px; } .candle { width: 7px; height: 28px; } .sun,.moon { width: 48px; height: 48px; top: 12px; } .sun { left: 12px; } .moon { right: 12px; } }
 </style>
 </head>
 <body>
-<div class="star-bg"></div><div class="sun"></div><div class="moon"></div><div class="particles"></div>
-<div class="main">
-<div class="step step0 active"><h1 class="title">Happy birthday baby 🐌🐱</h1><div class="message">I like you so much and i adore you. You light up my day and i hope you like what ive made<br><br>Ready?</div><div class="btn-row"><button class="yes-btn">Yes</button><button class="no-btn">No</button></div><div class="no-msg" style="min-height:2em"></div></div>
-<div class="step step1"><h1 class="title">Maze puzzle: find the cat! 🦖🐱</h1><div class="game-instructions">Use arrow keys or swipe to move the dino through the maze and reach the cat at the end.</div><canvas id="maze-game" class="game-canvas" width="500" height="250" aria-label="Maze puzzle game"></canvas><div class="game-controls">Move with WASD, arrow keys, or swipe.</div><div class="game-actions"><button id="maze-restart" style="display:none">Restart</button><button id="maze-continue" style="display:none">Continue</button></div><div class="record" id="vinyl-record" title="Click to play!" aria-label="Play the birthday song"></div><div class="message" style="text-align:center">Click the vinyl to play your song!</div><div class="now-playing" style="display:none;margin:10px 0;color:#ffd700;font-weight:bold;text-align:center">Now Playing: Grentperez - My Heart It Beats For You</div></div>
-<div class="step step2"><h1 class="title">Make a Wish &amp; Blow Out the Candles</h1><div style="text-align:center;margin-bottom:10px;font-size:1.1rem;color:#ffd700;font-weight:bold">Click each flame to reveal a message ᡣ • . • 𐭩 ♡</div><div class="cake"><div class="cake-layer cake-top"></div><div class="cake-layer cake-middle"></div><div class="cake-layer cake-bottom"></div><div class="candles"></div></div><div class="candle-message"></div></div>
-<div class="step step3"><h1 class="title">One More Question...</h1><div class="message">Do you want to see your letter?</div><div class="btn-row"><button class="yes-btn">Yes</button><button class="no-btn">No</button></div><div class="no-msg" style="min-height:2em"></div></div>
-<div class="step step4"><h1 class="title">Open Your Letter</h1><div class="envelope"></div><div style="text-align:center;color:#ffd700;font-weight:bold;margin:10px">Click the envelope to open</div><div class="letter"><p>Happy birthday, my love</p><p>I truly cherish you and will cherish you till you get tired of my weird ass. I can believe you're mine, I just want to say i like everything about you, your smile, your laugh, your style, [...]</p><p>I treasure our time together, from playing whatever, talking, and even just by sending tiktoks to each other cause i wanna laugh and share them with you and cause i thought about you when [...]</p><p>On your special day, I want you to know how much you truly mean to me, not just today but every day. You are my first thought in the morning and the last before I sleep. I care deeply about you [...]</p><p>enjoy your day and remember how incredibly special<br>you are. You deserve all the happiness in the world, my<br>love. I cant wait to spend more time with you even though we are far apart. you have my heart and one day i will kiss/ hug you any chance i get, soon. Here's to many more adventures, dreams, [...]</p></div></div>
-</div>
+<div class="star-bg" aria-hidden="true"></div><div class="sun" aria-hidden="true"></div><div class="moon" aria-hidden="true"></div><div class="particles" aria-hidden="true"></div>
+<main class="main">
+<section class="step step0 active">
+<h1 class="title">Happy birthday baby 🐌🐱</h1>
+<div class="message">I like you so much and i adore you. You light up my day and i hope you like what ive made<br><br>Ready?</div>
+<div class="btn-row"><button class="yes-btn" type="button">Yes</button><button class="no-btn" type="button">No</button></div><div class="no-msg" style="min-height:2em;text-align:center"></div>
+</section>
+<section class="step step1">
+<h1 class="title">Maze puzzle: find the cat! 🦖🐱</h1>
+<div class="game-instructions">Guide the dino through the maze to reach the cat.</div>
+<canvas id="maze-game" class="game-canvas" width="480" height="352" aria-label="Pixel maze puzzle. Guide the dinosaur to the cat using arrow keys, WASD, swipe, or the controls below."></canvas>
+<div class="game-controls">Use arrow keys, WASD, swipe, or tap the controls.</div>
+<div class="dpad" aria-label="Maze movement controls"><button id="maze-up" type="button" aria-label="Move up">▲</button><button id="maze-left" type="button" aria-label="Move left">◀</button><button id="maze-down" type="button" aria-label="Move down">▼</button><button id="maze-right" type="button" aria-label="Move right">▶</button></div>
+<div class="game-actions"><button id="maze-restart" type="button">Restart maze</button><button id="maze-continue" type="button" style="display:none">Continue</button></div>
+<div class="record" id="vinyl-record" title="Click to play!" aria-label="Play the birthday song" role="button" tabindex="0"></div>
+<div class="message">Click the vinyl to play your song!</div><div class="now-playing" style="display:none;margin:10px 0;color:#ffd700;font-weight:bold;text-align:center">Now Playing: Grentperez - My Heart It Beats For You</div>
+</section>
+<section class="step step2">
+<h1 class="title">Make a Wish &amp; Blow Out the Candles</h1><div style="text-align:center;margin-bottom:10px;font-size:1.1rem;color:#ffd700;font-weight:bold">Click each flame to reveal a message ᡣ • . • 𐭩 ♡</div>
+<div class="cake"><div class="cake-layer cake-top"></div><div class="cake-layer cake-middle"></div><div class="cake-layer cake-bottom"></div><div class="candles"></div></div><div class="candle-message"></div>
+</section>
+<section class="step step3"><h1 class="title">One More Question...</h1><div class="message">Do you want to see your letter?</div><div class="btn-row"><button class="yes-btn" type="button">Yes</button><button class="no-btn" type="button">No</button></div><div class="no-msg" style="min-height:2em;text-align:center"></div></section>
+<section class="step step4"><h1 class="title">Open Your Letter</h1><div class="envelope" role="button" tabindex="0" aria-label="Open the letter"></div><div style="text-align:center;color:#ffd700;font-weight:bold;margin:10px">Click the envelope to open</div><div class="letter"><p>Happy birthday, my love</p><p>I truly cherish you and will cherish you till you get tired of my weird ass. I can believe you're mine, I just want to say i like everything about you, your smile, your laugh, your style, [...]</p><p>I treasure our time together, from playing whatever, talking, and even just by sending tiktoks to each other cause i wanna laugh and share them with you and cause i thought about you when [...]</p><p>On your special day, I want you to know how much you truly mean to me, not just today but every day. You are my first thought in the morning and the last before I sleep. I care deeply about you [...]</p><p>enjoy your day and remember how incredibly special<br>you are. You deserve all the happiness in the world, my<br>love. I cant wait to spend more time with you even though we are far apart. you have my heart and one day i will kiss/ hug you any chance i get, soon. Here's to many more adventures, dreams, [...]</p></div></section>
+</main>
 <audio id="audio1" src="my-heart-it-beats-for-you.mp3" preload="auto"></audio><audio id="audio2" src="tuxnj53an2.mp3" preload="auto"></audio>
 <script>
+'use strict';
 const sweetMessages=["","I would do shit for you, watch all the marvel movies u love, that's how much i like you","You make my days brighter by being with me","You are so adorable hfdjsakhds","My darling you are so Gorgeous and such an amazing person","I like you so so much my moon","Im so glad you replied to my 'hi' in TT","Every little thing you do is adorable.","You're my favorite person to talk to","I'm so grateful to have you as my partner","I cherish you more every day.","Being with you makes everything in life so much better.","Every time I see you, I'm reminded how lucky I am to call you mine.","I fall for you more every day","I cant wait for the day to see you in person","you will always have me by your side no matter what","you're my meow meow dont ever question that","The best part of my day is talking to you","When i see you dont expect to not have me run to you and kiss you right then and there","My wife!! hehehe","Thank you for being in my life","No refunds ok? you're stuck with me","I will kill for you just dont tell anyone lol","(when i see your pic) woof wof bark bark MINE xD"];
 const noClickMessages=["You sure? You're gonna miss something good...","Come on, I know you're curious 😏","You're seriously saying no again?!","Alright now you're just messing with me 😤","Fine. You win. (Just kidding—click yes already 😁)","You really don't wanna see your surprise? 🤨","Are you sure you don't want to see it? 🥺","Come on, it's really special!","Pleaseee click yes 😩","You're missing out...","I'm gonna cry 😭","Okay this is just cruel 😔"];
 let wrongCounter=0,noClickCount=0,candlesBlown=Array(23).fill(false);
-function goToStep(step){document.querySelectorAll('.step').forEach((el,i)=>el.classList.toggle('active',i===step));document.body.classList.toggle('second-page',step===1);if(step===1){stopAllAudio();bindRecordClick()}if(step===2)updateCandleMessage()}
-function growYes(step,count){const yes=document.querySelector(`.step${step} .yes-btn`);if(!yes)return;yes.style.transform=`scale(${Math.min(1+count*.18,3)})`;yes.style.transformOrigin='center'}
+function goToStep(step){document.querySelectorAll('.step').forEach((el,i)=>el.classList.toggle('active',i===step));document.body.classList.toggle('second-page',step===1);if(step===1)stopAllAudio();if(step===2)updateCandleMessage();}
+function growYes(step,count){const yes=document.querySelector(`.step${step} .yes-btn`);if(yes){yes.style.transform=`scale(${Math.min(1+count*.18,3)})`;yes.style.transformOrigin='center';}}
 document.querySelector('.step0 .yes-btn').onclick=()=>goToStep(1);
-document.querySelector('.step0 .no-btn').onclick=function(){wrongCounter++;document.querySelector('.step0 .no-msg').textContent=noClickMessages[(wrongCounter-1)%noClickMessages.length];this.classList.toggle('shrink',wrongCounter%2===1);growYes(0,wrongCounter)};
+document.querySelector('.step0 .no-btn').onclick=function(){wrongCounter++;document.querySelector('.step0 .no-msg').textContent=noClickMessages[(wrongCounter-1)%noClickMessages.length];this.classList.toggle('shrink',wrongCounter%2===1);growYes(0,wrongCounter);};
 document.querySelector('.step3 .yes-btn').onclick=()=>goToStep(4);
-document.querySelector('.step3 .no-btn').onclick=function(){noClickCount++;document.querySelector('.step3 .no-msg').textContent=noClickMessages[(noClickCount-1)%noClickMessages.length];this.style.width=Math.max(40,80-noClickCount*5)+'px';this.style.transform=`translateX(${Math.random()*60-30}px)`;growYes(3,noClickCount)};
-function bindRecordClick(){const record=document.getElementById('vinyl-record'),nowPlaying=document.querySelector('.step1 .now-playing');let played=false;record.onclick=()=>{if(played)return;const audio=document.getElementById('audio1');audio.pause();audio.currentTime=0;audio.play();record.classList.add('playing');nowPlaying.style.display='block';played=true;setTimeout(()=>{record.classList.remove('playing');nowPlaying.style.display='none';played=false},6000)}};
-function setupCandles(){const c=document.querySelector('.candles');[[5,200,'top'],[9,240,'middle'],[9,280,'bottom']].forEach(([n,w,row],r)=>{const div=document.createElement('div');div.className='candle-row '+row;div.style.width=(w-24)+'px';div.style.left=(r===0?52:r===1?0:12)+'px';for(let i=0;i<n;i++){const candle=document.createElement('div'),flame=document.createElement('div'),idx=[0,5,14][r]+i;candle.className='candle';flame.className='flame';candle.appendChild(flame);candle.onclick=()=>blowOutCandle(idx,candle,flame);div.appendChild(candle)}c.appendChild(div)})}
-function blowOutCandle(idx,candle,flame){if(!candlesBlown[idx]){candlesBlown[idx]=true;flame.style.display='none';candle.style.opacity=.4;updateCandleMessage(idx+1)}if(candlesBlown.every(Boolean))setTimeout(()=>goToStep(3),1200)}
-function updateCandleMessage(idx){document.querySelector('.candle-message').textContent=idx?sweetMessages[idx]:''}
-const envelope=document.querySelector('.envelope'),letter=document.querySelector('.letter');envelope.onclick=()=>{envelope.classList.add('opened');letter.classList.add('visible');playAudio(2)};
-function playAudio(track){const a1=document.getElementById('audio1'),a2=document.getElementById('audio2');if(track===1){a2.pause();a2.currentTime=0;a1.currentTime=0;a1.play()}else{a1.pause();a1.currentTime=0;a2.currentTime=0;a2.play()}}
-function stopAllAudio(){document.getElementById('audio1').pause();document.getElementById('audio2').pause()}
-// Pixel maze puzzle: move the dino through the maze to the cat.
-const mazeCanvas=document.getElementById('maze-game');
-const mazeCtx=mazeCanvas.getContext('2d');
-const mazeRows=[
-'################',
-'#S....#......##',
-'#.##.#.###.##.#',
-'#....#...#....#',
-'###.##.#.####.#',
-'#...#..#....#.#',
-'#.#.###.##.#..#',
-'#.#.....#..#..#',
-'#.#####.#.##..#',
-'#.....#....#..#',
-'###.#.######..#',
-'#...#....#....G',
-'################'
-];
-const mazeCols=mazeRows[0].length;
-const mazeTile=32;
-const player={x:1,y:1};
-const goal={x:mazeRows[mazeRows.length-2].indexOf('G'),y:mazeRows.length-2};
-const mazeRestart=document.getElementById('maze-restart');
-const mazeContinue=document.getElementById('maze-continue');
+document.querySelector('.step3 .no-btn').onclick=function(){noClickCount++;document.querySelector('.step3 .no-msg').textContent=noClickMessages[(noClickCount-1)%noClickMessages.length];this.style.width=Math.max(40,80-noClickCount*5)+'px';this.style.transform=`translateX(${Math.random()*60-30}px)`;growYes(3,noClickCount);};
+function setupCandles(){const container=document.querySelector('.candles');[[5,200,'top'],[9,240,'middle'],[9,280,'bottom']].forEach(([count,width,row],r)=>{const line=document.createElement('div');line.className='candle-row '+row;line.style.width=(width-24)+'px';line.style.left=(r===0?52:r===1?0:12)+'px';for(let i=0;i<count;i++){const candle=document.createElement('div'),flame=document.createElement('div'),index=[0,5,14][r]+i;candle.className='candle';flame.className='flame';candle.appendChild(flame);candle.onclick=()=>{if(candlesBlown[index])return;candlesBlown[index]=true;flame.style.display='none';candle.style.opacity='.4';updateCandleMessage(index+1);if(candlesBlown.every(Boolean))setTimeout(()=>goToStep(3),800);};line.appendChild(candle);}container.appendChild(line);});}
+function updateCandleMessage(index){document.querySelector('.candle-message').textContent=index?sweetMessages[index]:'';}
+const envelope=document.querySelector('.envelope'),letter=document.querySelector('.letter');
+function openLetter(){envelope.classList.add('opened');letter.classList.add('visible');const a1=document.getElementById('audio1'),a2=document.getElementById('audio2');a1.pause();a1.currentTime=0;a2.currentTime=0;a2.play().catch(()=>{});}
+envelope.addEventListener('click',openLetter);envelope.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLetter();}});
+function stopAllAudio(){document.getElementById('audio1').pause();document.getElementById('audio2').pause();}
+// Generate a connected, perfect pixel maze; every passage is reachable from the start.
+const canvas=document.getElementById('maze-game'),ctx=canvas.getContext('2d');
+const cols=15,rows=11,tile=32;
+const maze=Array.from({length:rows},()=>Array(cols).fill(1));
+function carveMaze(x,y){maze[y][x]=0;const directions=[[0,-2],[2,0],[0,2],[-2,0]].sort(()=>Math.random()-.5);for(const [dx,dy] of directions){const nx=x+dx,ny=y+dy;if(nx>0&&nx<cols-1&&ny>0&&ny<rows-1&&maze[ny][nx]===1){maze[y+dy/2][x+dx/2]=0;carveMaze(nx,ny);}}}
+carveMaze(1,1);
+const player={x:1,y:1},goal={x:cols-2,y:rows-2};
+maze[goal.y][goal.x]=0;
 let mazeWon=false;
-function resetMaze(){player.x=1;player.y=1;mazeWon=false;mazeRestart.style.display='none';mazeContinue.style.display='none';renderMaze();}
-function isWall(x,y){if(x<0||y<0||x>=mazeCols||y>=mazeRows.length)return true;return mazeRows[y][x]==='#';}
-function movePlayer(dx,dy){if(mazeWon)return;const nx=player.x+dx,ny=player.y+dy;if(!isWall(nx,ny)){player.x=nx;player.y=ny;if(player.x===goal.x&&player.y===goal.y){mazeWon=true;mazeContinue.style.display='inline-block';}}renderMaze();}
-function drawPixel(x,y,w,h,color){mazeCtx.fillStyle=color;mazeCtx.fillRect(Math.round(x),Math.round(y),w,h)}
-function drawDino(x,y){const px=x*mazeTile+6,py=y*mazeTile+6;drawPixel(px,py+10,16,14,'#64b738');drawPixel(px+9,py,18,12,'#7ad84a');drawPixel(px+14,py-6,10,8,'#9eea68');drawPixel(px+2,py+16,6,8,'#5aa336');drawPixel(px+18,py+16,6,8,'#5aa336');drawPixel(px+10,py+2,4,4,'#3a4f20');drawPixel(px+18,py+2,4,4,'#3a4f20');drawPixel(px+9,py+6,4,4,'#d4f95a');}
-function drawCat(x,y){const px=x*mazeTile+6,py=y*mazeTile+6;drawPixel(px+2,py+8,22,16,'#f3d9b0');drawPixel(px,py,10,12,'#f3d9b0');drawPixel(px+18,py,10,12,'#f3d9b0');drawPixel(px+4,py-8,6,8,'#f6e4be');drawPixel(px+18,py-8,6,8,'#f6e4be');drawPixel(px+10,py+12,6,5,'#e594a2');drawPixel(px+4,py+18,6,6,'#f3d9b0');drawPixel(px+18,py+18,6,6,'#f3d9b0');drawPixel(px+10,py+2,4,4,'#312d38');drawPixel(px+18,py+2,4,4,'#312d38');}
-function renderMaze(){mazeCtx.clearRect(0,0,mazeCanvas.width,mazeCanvas.height);mazeCtx.fillStyle='#3d0f4c';mazeCtx.fillRect(0,0,mazeCanvas.width,mazeCanvas.height);for(let y=0;y<mazeRows.length;y++){for(let x=0;x<mazeCols;x++){const cell=mazeRows[y][x];const px=x*mazeTile+2,py=y*mazeTile+2;if(cell==='#'){mazeCtx.fillStyle='#5d2a7a';mazeCtx.fillRect(px,py,mazeTile-4,mazeTile-4);}else{mazeCtx.fillStyle='#3d0f4c';mazeCtx.fillRect(px,py,mazeTile-4,mazeTile-4);}}
-if(mazeWon){drawCat(goal.x,goal.y);}else{drawCat(goal.x,goal.y);}drawDino(player.x,player.y);if(mazeWon){mazeCtx.fillStyle='rgba(255,255,255,.9)';mazeCtx.font='bold 20px Georgia';mazeCtx.textAlign='center';mazeCtx.fillText('You found the cat! 💜',mazeCanvas.width/2,30);}}
-window.addEventListener('keydown',function(e){const key=e.key.toLowerCase();if(!['arrowup','arrowdown','arrowleft','arrowright','w','a','s','d'].includes(key))return;const dirs={arrowup:[0,-1],arrowdown:[0,1],arrowleft:[-1,0],arrowright:[1,0],w:[0,-1],s:[0,1],a:[-1,0],d:[1,0]};const [dx,dy]=dirs[key];movePlayer(dx,dy);e.preventDefault();});
-let touchStartX=0,touchStartY=0;mazeCanvas.addEventListener('touchstart',function(e){const t=e.changedTouches[0];touchStartX=t.clientX;touchStartY=t.clientY;},false);mazeCanvas.addEventListener('touchend',function(e){const t=e.changedTouches[0];const dx=t.clientX-touchStartX;const dy=t.clientY-touchStartY;if(Math.abs(dx)>Math.abs(dy)){movePlayer(dx>0?1:-1,0);}else{movePlayer(0,dy>0?1:-1);}},false);
-mazeRestart.onclick=resetMaze;
-mazeContinue.onclick=()=>goToStep(2);
-resetMaze();
+const restartButton=document.getElementById('maze-restart'),continueButton=document.getElementById('maze-continue');
+function pixel(x,y,w,h,color){ctx.fillStyle=color;ctx.fillRect(Math.round(x),Math.round(y),w,h);}
+function drawDino(){const x=player.x*tile,y=player.y*tile;pixel(x+7,y+16,18,12,'#58a83b');pixel(x+17,y+7,15,13,'#70c849');pixel(x+25,y+4,9,10,'#8bdc55');pixel(x+29,y+7,3,3,'#263923');pixel(x+6,y+20,7,5,'#58a83b');pixel(x+12,y+27,6,4,'#397d31');pixel(x+25,y+27,6,4,'#397d31');}
+function drawCat(){const x=goal.x*tile,y=goal.y*tile;pixel(x+7,y+14,19,13,'#f3dfc1');pixel(x+7,y+7,7,10,'#f3dfc1');pixel(x+20,y+7,7,10,'#f3dfc1');pixel(x+8,y+3,6,7,'#f3dfc1');pixel(x+21,y+3,6,7,'#f3dfc1');pixel(x+11,y+12,3,3,'#332b37');pixel(x+20,y+12,3,3,'#332b37');pixel(x+15,y+17,4,3,'#db8291');pixel(x+9,y+26,6,4,'#f3dfc1');pixel(x+21,y+26,6,4,'#f3dfc1');}
+function renderMaze(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#351043';ctx.fillRect(0,0,canvas.width,canvas.height);for(let y=0;y<rows;y++){for(let x=0;x<cols;x++){const px=x*tile,py=y*tile;if(maze[y][x]){pixel(px,py,tile,tile,'#5d2a7a');pixel(px+3,py+3,tile-6,tile-6,'#71358e');pixel(px+5,py+5,5,5,'#81439a');}else{pixel(px,py,tile,tile,'#42134f');if((x+y)%2===0)pixel(px+5,py+5,3,3,'#4d1a5d');}}}drawCat();drawDino();if(mazeWon){ctx.fillStyle='rgba(25,8,35,.76)';ctx.fillRect(30,132,420,72);ctx.fillStyle='#fff';ctx.font='bold 22px Georgia';ctx.textAlign='center';ctx.fillText('You found the cat! 💜',240,177);}}
+function movePlayer(dx,dy){if(mazeWon)return;const x=player.x+dx,y=player.y+dy;if(x<0||y<0||x>=cols||y>=rows||maze[y][x])return;player.x=x;player.y=y;if(x===goal.x&&y===goal.y){mazeWon=true;continueButton.style.display='inline-block';}renderMaze();}
+function resetMaze(){player.x=1;player.y=1;mazeWon=false;continueButton.style.display='none';renderMaze();}
+const directions={ArrowUp:[0,-1],w:[0,-1],ArrowDown:[0,1],s:[0,1],ArrowLeft:[-1,0],a:[-1,0],ArrowRight:[1,0],d:[1,0]};
+window.addEventListener('keydown',e=>{const direction=directions[e.key]||directions[e.key.toLowerCase()];if(!direction||!document.querySelector('.step1').classList.contains('active'))return;e.preventDefault();movePlayer(...direction);});
+[['maze-up',0,-1],['maze-down',0,1],['maze-left',-1,0],['maze-right',1,0]].forEach(([id,dx,dy])=>document.getElementById(id).addEventListener('click',()=>movePlayer(dx,dy)));
+let touchX=0,touchY=0;canvas.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX;touchY=e.changedTouches[0].clientY;},{passive:true});canvas.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX,dy=e.changedTouches[0].clientY-touchY;if(Math.max(Math.abs(dx),Math.abs(dy))<12)return;if(Math.abs(dx)>Math.abs(dy))movePlayer(dx>0?1:-1,0);else movePlayer(0,dy>0?1:-1);},{passive:true});
+restartButton.onclick=resetMaze;continueButton.onclick=()=>goToStep(2);
+function makeDecorations(){const bg=document.querySelector('.star-bg'),particles=document.querySelector('.particles');for(let i=0;i<100;i++){const star=document.createElement('span');star.className='star';const size=Math.random()*2+1;star.style.width=size+'px';star.style.height=size+'px';star.style.left=Math.random()*100+'vw';star.style.top=Math.random()*100+'vh';star.style.animationDelay=Math.random()*3+'s';bg.appendChild(star);}for(let i=0;i<18;i++){const heart=document.createElement('span');heart.className='heart';heart.textContent='❤';heart.style.left=Math.random()*100+'vw';heart.style.animationDelay=Math.random()*5+'s';particles.appendChild(heart);}}
+const record=document.getElementById('vinyl-record');function playSong(){const audio=document.getElementById('audio1'),status=document.querySelector('.now-playing');audio.currentTime=0;audio.play().catch(()=>{});record.classList.add('playing');status.style.display='block';audio.onended=()=>{record.classList.remove('playing');status.style.display='none';};}
+record.addEventListener('click',playSong);record.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();playSong();}});
+makeDecorations();setupCandles();resetMaze();
 </script>
 </body>
 </html>
