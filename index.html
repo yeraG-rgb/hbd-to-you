@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>hbd maxie <3</title>
+	<style>
+		html, body { height: 100%; }
+		body {
+			font-family: 'Georgia', serif;
+			background: linear-gradient(135deg, #041b3d 0%, #0f2551 50%, #183372 100%);
+			color: #fff;
+			margin: 0;
+			min-height: 100vh;
+			overflow-x: hidden;
+		}
+		.star-bg {
+			position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0;
+			pointer-events: none;
+		}
+		.star {
+			position: absolute;
+			border-radius: 50%;
+			background: #fff;
+			opacity: 0.8;
+			animation: twinkle 3s infinite alternate;
+		}
+		@keyframes twinkle {
+			0% { opacity: 0.3; }
+			100% { opacity: 1; }
+		}
+		.shooting-star {
+			position: absolute;
+			width: 80px; height: 2px;
+			background: linear-gradient(90deg, #fff, transparent);
+			opacity: 0.7;
+			z-index: 1;
+			pointer-events: none;
+			animation: shoot 1.2s linear forwards;
+		}
+		@keyframes shoot {
+			0% { opacity: 0; transform: translateX(0) scaleX(0.5); }
+			10% { opacity: 1; }
+			100% { opacity: 0; transform: translateX(400px) scaleX(1.2); }
+		}
+		.sun, .moon {
+			position: fixed;
+			top: 30px;
+			width: 70px; height: 70px;
+			border-radius: 50%;
+			z-index: 2;
+			box-shadow: 0 0 30px #ffd700, 0 0 60px #ff8c00;
+			animation: float 8s ease-in-out infinite;
+		}
+		.sun { left: 30px; background: radial-gradient(circle, #ffd700 0%, #ff8c00 70%, #ff4500 100%); }
+		.moon { right: 30px; background: radial-gradient(circle, #f5f5f5 0%, #bdc3c7 70%, #95a5a6 100%); box-shadow: 0 0 20px #bdc3c7; }
+		@keyframes float {
+			0%, 100% { transform: translateY(0); }
+			50% { transform: translateY(20px); }
+		}
+		.main {
+			position: relative;
+			z-index: 10;
+			max-width: 700px;
+			margin: 0 auto;
+			padding: 40px 10px 10px 10px;
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		.step { display: none; }
+		.step.active { display: block; animation: fadeIn 0.8s; }
+		@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+		h1.title {
+			font-size: 2.5rem;
+			color: #fff;
+			text-shadow: 0 0 10px #a855f7;
+			margin-bottom: 20px;
+		}
+		.message { font-size: 1.2rem; color: #d1e3ff; margin-bottom: 30px; }
+		.btn-row { display: flex; gap: 20px; justify-content: center; margin: 30px 0; }
+		button {
+			font-size: 1.1rem;
+			padding: 12px 32px;
+			border-radius: 8px;
+			border: none;
+			background: #1e3a8a;
+			color: #fff;
+			cursor: pointer;
+			box-shadow: 0 2px 8px #0003;
+			transition: background 0.2s, transform 0.2s;
+		}
+		button:hover { background: #3a6fc1; transform: scale(1.05); }
+		.no-btn { background: #b366ff; }
+		.no-btn.shrink { width: 60px !important; }
+		.record {
+			width: 180px; height: 180px;
+			background: url('4wiy9wx2cq.png') center/cover no-repeat, #222;
+			border-radius: 50%;
+			margin: 0 auto 20px auto;
+			animation: spin 4s linear infinite paused;
+			box-shadow: 0 0 30px #0008;
+			border: 6px solid #222;
+			cursor: pointer;
+			position: relative;
+			transition: box-shadow 0.2s;
+		}
+		.record:hover {
+			box-shadow: 0 0 40px #ffd700, 0 0 60px #a855f7;
+		}
+		.record.playing { animation-play-state: running; }
+		@keyframes spin { 100% { transform: rotate(360deg); } }
+		.cake {
+			margin: 0 auto 30px auto;
+			position: relative;
+			width: 280px;
+			height: 220px;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		.cake-layer {
+			border-radius: 30px 30px 18px 18px;
+			margin-bottom: 0px;
+			box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+			position: absolute;
+			left: 0;
+		}
+		.cake-bottom {
+			width: 280px;
+			height: 100px;
+			background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+			bottom: 0;
+			left: 0;
+		}
+		.cake-middle {
+			width: 240px;
+			height: 60px;
+			background: linear-gradient(135deg, #c084fc 0%, #a78bfa 100%);
+			bottom: 100px;
+			left: 20px;
+		}
+		.cake-top {
+			width: 200px;
+			height: 40px;
+			background: linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 100%);
+			bottom: 160px;
+			left: 40px;
+		}
+		.candles {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			pointer-events: none;
+		}
+		.candle-row {
+			position: absolute;
+			left: 0;
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			pointer-events: auto;
+		}
+		.candle-row.top {
+			top: 18px;
+		}
+		.candle-row.middle {
+			top: 78px;
+		}
+		.candle-row.bottom {
+			top: 178px;
+		}
+		.candle {
+			width: 10px; height: 38px;
+			background: linear-gradient(to top, #d8b3ff, #b366ff, #8a2be2);
+			border-radius: 5px 5px 2px 2px;
+			position: relative;
+			cursor: pointer;
+			transition: opacity 0.3s;
+		}
+		.candle .flame {
+			position: absolute;
+			top: -18px;
+			left: 50%;
+			transform: translate(-50%, 0);
+			width: 14px;
+			height: 18px;
+			background: radial-gradient(ellipse, #ffd700 0%, #ff6b35 70%, transparent 100%);
+			border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+			animation: flameFlicker 0.3s infinite alternate;
+			box-shadow: 0 0 8px #ffd700;
+			pointer-events: none;
+		}
+		@keyframes flameFlicker {
+			0% { opacity: 0.7; transform: scale(1) rotate(-2deg); }
+			100% { opacity: 1; transform: scale(1.1) rotate(2deg); }
+		}
+		.candle-message {
+			margin: 18px 0 0 0;
+			color: #fff;
+			font-size: 1.1rem;
+			min-height: 1.5em;
+			text-align: center;
+		}
+		.envelope {
+			width: 120px; height: 80px;
+			background: url('2v1g5wi779.png') center/cover no-repeat, #fff;
+			margin: 30px auto 0 auto;
+			cursor: pointer;
+			transition: transform 0.2s;
+			display: block;
+			z-index: 2;
+			border: 3px solid #ffd700;
+			box-shadow: 0 4px 24px #0005, 0 0 0 6px #fff8;
+		}
+		.envelope.opened { transform: scale(1.1) rotate(-5deg); }
+		.letter {
+			display: none;
+			background: #fff;
+			color: #091539;
+			border-radius: 12px;
+			box-shadow: 0 4px 24px #0005;
+			padding: 30px 24px;
+			margin: 30px auto 0 auto;
+			max-width: 400px;
+			font-size: 1.1rem;
+			line-height: 1.7;
+			text-align: left;
+			animation: fadeIn 1s;
+			z-index: 3;
+			position: relative;
+		}
+		.letter.visible { display: block; }
+		.particles { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 3; }
+		.heart {
+			position: absolute;
+			color: #ec4899;
+			font-size: 1.5rem;
+			opacity: 0.7;
+			animation: floatHeart 5s infinite linear;
+		}
+		@keyframes floatHeart {
+			0% { opacity: 0; transform: translateY(100vh) rotate(0deg); }
+			10% { opacity: 1; }
+			90% { opacity: 1; }
+			100% { opacity: 0; transform: translateY(-100px) rotate(360deg); }
+		}
+		@media (max-width: 600px) {
+			.main { padding: 10px; }
+			.cake { width: 98vw; max-width: 320px; }
+			.cake-bottom { width: 90vw; max-width: 280px; }
+			.cake-middle { width: 80vw; max-width: 240px; }
+			.cake-top { width: 70vw; max-width: 200px; }
+			.candles { gap: 2px; }
+			.candle { width: 7px; height: 28px; }
+		}
+	</style>
+</head>
+<body>
+	<div class="star-bg"></div>
+	<div class="sun"></div>
+	<div class="moon"></div>
+	<div class="particles"></div>
+	<div class="main">
+		<!-- Step 0: Yes/No -->
+		<div class="step step0 active">
+			<h1 class="title">Happy Birthday! 🌟</h1>
+			<div class="message">To the one I like so much and adore endlessly. You light up my universe.<br><br>Ready for your surprise?</div>
+			<div class="btn-row">
+				<button class="yes-btn">Yes</button>
+				<button class="no-btn">No</button>
+			</div>
+			<div class="no-msg" style="min-height:2em;"></div>
+		</div>
+		<!-- Step 1: Record -->
+		<div class="step step1">
+			<h1 class="title">A Song for You</h1>
+			<div class="record" id="vinyl-record" title="Click to play!"></div>
+			<div class="message">Click the vinyl to play your song!</div>
+			<div class="now-playing" style="display:none; margin-top:10px; color:#ffd700; font-weight:bold;">Now Playing: Grentperez - My Heart It Beats For You</div>
+		</div>
+		<!-- Step 2: Candles -->
+		<div class="step step2">
+			<h1 class="title">Make a Wish & Blow Out the Candles</h1>
+			<div class="cake-message" style="text-align:center; margin-bottom:10px; font-size:1.1rem; color:#ffd700; font-weight:bold;">
+				Click each flame to reveal a message ᡣ • . • 𐭩 ♡
+			</div>
+			<div class="cake">
+				<div class="cake-layer cake-top"></div>
+				<div class="cake-layer cake-middle"></div>
+				<div class="cake-layer cake-bottom"></div>
+				<div class="candles"></div>
+			</div>
+			<div class="candle-message"></div>
+		</div>
+		<!-- Step 3: Yes/No Buttons (playful) -->
+		<div class="step step3">
+			<h1 class="title">One More Question...</h1>
+			<div class="message">Do you want to see your letter?</div>
+			<div class="btn-row">
+				<button class="yes-btn">Yes</button>
+				<button class="no-btn">No</button>
+			</div>
+			<div class="no-msg" style="min-height:2em;"></div>
+		</div>
+		<!-- Step 4: Letter -->
+		<div class="step step4">
+			<h1 class="title">Open Your Letter</h1>
+			<div class="envelope"></div>
+			<div style="text-align:center; color:#ffd700; font-weight:bold; margin-bottom:10px; font-size:1.1rem;">Click the envelope to open</div>
+			<div class="letter">
+				<p>Happy birthday, my love</p>
+				<p>I truly cherish you and will cherish you till you get tired of my weird ass. I can believe you're mine, I just want to say i like everything about you, your smile, your laugh, your style, and yes even your "weird" and competitive side of yourself. You always have a way to make me smile and swoon. God im so lucky, who would've thought that just by saying hi and shooting my shot to talk to you in TT led me to you</p>
+				<p>I treasure our time together, from playing whatever, talking, and even just by sending tiktoks to each other cause i wanna laugh and share them with you and cause i thought about you when i saw it. ah you're just so cute and i mean not just your looks, but your personality too, the things you say from nerd talk to anything, your laugh your voice, your smile. You're perfect to me and i hope you know that. i will tell you that and remind you everyday for you to know</p>
+				<p>On your special day, I want you to know how much you truly mean to me, not just today but every day. You are my first thought in the morning and the last before I sleep. I care deeply about you, and I want you to know I'm here for you, no matter what. Whether you're feeling excited, overwhelmed, or simply reflective, I will stand by you. you will always have someone to talk to with whatever</p>
+				<p>enjoy your day and remember how incredibly special<br>
+				you are. You deserve all the happiness in the world, my<br>
+				love. I cant wait to spend more time with you even though we are far apart. you have my heart and one day i will kiss/ hug you any chance i get, soon. Here's to many more adventures, dreams, together. I can't wait to see what the future holds for us. -yours, Yera</p>
+			</div>
+		</div>
+	</div>
+	<audio id="audio1" src="my-heart-it-beats-for-you.mp3" preload="auto"></audio>
+	<audio id="audio2" src="tuxnj53an2.mp3" preload="auto"></audio>
+	<script>
+		// --- Data Arrays ---
+		const sweetMessages = [
+			"", // 0: intentionally blank for 1-based
+			"I would do shit for you, watch all the marvel movies u love, that's how much i like you",
+			"You make my days brighter by being with me",
+			"You are so adorable hfdjsakhds",
+			"My darling you are so Gorgeous and such an amazing person",
+			"I like you so so much my moon",
+			"Im so glad you replied to my 'hi' in TT",
+			"Every little thing you do is adorable.",
+			"You're my favorite person to talk to",
+			"I'm so grateful to have you as my partner",
+			"I cherish you more every day.",
+			"Being with you makes everything in life so much better.",
+			"Every time I see you, I'm reminded how lucky I am to call you mine.",
+			"I fall for you more every day",
+			"I cant wait for the day to see you in person",
+			"you will always have me by your side no matter what",
+			"you're my meow meow dont ever question that",
+			"The best part of my day is talking to you",
+			"When i see you dont expect to not have me run to you and kiss you right then and there",
+			"My wife!! hehehe",
+			"Thank you for being in my life",
+			"No refunds ok? you're stuck with me",
+			"I will kill for you just dont tell anyone lol",
+			"(when i see your pic) woof wof bark bark MINE xD"
+		];
+		const noClickMessages = [
+			"You sure? You're gonna miss something good...",
+			"Come on, I know you're curious 😏",
+			"You're seriously saying no again?!",
+			"Alright now you're just messing with me 😤",
+			"Fine. You win. (Just kidding—click yes already 😁)",
+			"You really don't wanna see your surprise? 🤨",
+			"Are you sure you don't want to see it? 🥺",
+			"Come on, it's really special!",
+			"Pleaseee click yes 😩",
+			"You're missing out...",
+			"I'm gonna cry 😭",
+			"Okay this is just cruel 😔"
+		];
+		// --- State ---
+		let currentStep = 0;
+		let wrongCounter = 0;
+		let noClickCount = 0;
+		let candlesBlown = Array(23).fill(false);
+		let audio1Playing = false, audio2Playing = false;
+		// --- Step Navigation ---
+		function goToStep(step) {
+			document.querySelectorAll('.step').forEach((el, i) => {
+				el.classList.toggle('active', i === step);
+			});
+			currentStep = step;
+			if (step === 1) {
+				stopAllAudio();
+				bindRecordClick();
+			}
+			if (step === 2) updateCandleMessage();
+		}
+		// --- Step 0: Yes/No ---
+		document.querySelector('.step0 .yes-btn').onclick = () => goToStep(1);
+		document.querySelector('.step0 .no-btn').onclick = function() {
+			wrongCounter++;
+			const msg = noClickMessages[(wrongCounter-1)%noClickMessages.length];
+			document.querySelector('.step0 .no-msg').textContent = msg;
+			this.classList.toggle('shrink', wrongCounter%2===1);
+		};
+		// --- Step 1: Record ---
+		function bindRecordClick() {
+			const record = document.getElementById('vinyl-record');
+			const nowPlaying = document.querySelector('.step1 .now-playing');
+			let recordPlayed = false;
+			if (record) {
+				record.onclick = function() {
+					if (!recordPlayed) {
+						const a1 = document.getElementById('audio1');
+						a1.pause();
+						a1.currentTime = 0;
+						a1.play();
+						record.classList.add('playing');
+						nowPlaying.style.display = 'block';
+						recordPlayed = true;
+						setTimeout(()=>{
+							goToStep(2);
+							record.classList.remove('playing');
+							nowPlaying.style.display = 'none';
+							recordPlayed = false;
+						}, 6000);
+					}
+				};
+			}
+		}
+		// --- Step 2: Candles ---
+		function setupCandles() {
+			const c = document.querySelector('.candles');
+			c.innerHTML = '';
+			// Cake layer widths
+			const cakeTopWidth = 200;
+			const cakeMiddleWidth = 240;
+			const cakeBottomWidth = 280;
+			// Top row
+			const topRow = document.createElement('div');
+			topRow.className = 'candle-row top';
+			topRow.style.width = (cakeTopWidth - 24) + 'px';
+			topRow.style.left = ((280-cakeTopWidth)/2 + 12) + 'px';
+			topRow.style.position = 'absolute';
+			for (let i=0; i<5; i++) {
+				const candle = document.createElement('div');
+				candle.className = 'candle';
+				candle.dataset.idx = i;
+				const flame = document.createElement('div');
+				flame.className = 'flame';
+				candle.appendChild(flame);
+				candle.onclick = function() { blowOutCandle(i, candle, flame); };
+				topRow.appendChild(candle);
+			}
+			c.appendChild(topRow);
+			// Middle row
+			const middleRow = document.createElement('div');
+			middleRow.className = 'candle-row middle';
+			middleRow.style.width = (cakeMiddleWidth - 24) + 'px';
+			middleRow.style.left = ((280-cakeMiddleWidth)/2 + 12) + 'px';
+			middleRow.style.position = 'absolute';
+			for (let i=0; i<9; i++) {
+				const candle = document.createElement('div');
+				candle.className = 'candle';
+				candle.dataset.idx = 5 + i;
+				const flame = document.createElement('div');
+				flame.className = 'flame';
+				candle.appendChild(flame);
+				candle.onclick = function() { blowOutCandle(5 + i, candle, flame); };
+				middleRow.appendChild(candle);
+			}
+			c.appendChild(middleRow);
+			// Bottom row
+			const bottomRow = document.createElement('div');
+			bottomRow.className = 'candle-row bottom';
+			bottomRow.style.width = (cakeBottomWidth - 24) + 'px';
+			bottomRow.style.left = '12px';
+			bottomRow.style.position = 'absolute';
+			for (let i=0; i<9; i++) {
+				const candle = document.createElement('div');
+				candle.className = 'candle';
+				candle.dataset.idx = 14 + i;
+				const flame = document.createElement('div');
+				flame.className = 'flame';
+				candle.appendChild(flame);
+				candle.onclick = function() { blowOutCandle(14 + i, candle, flame); };
+				bottomRow.appendChild(candle);
+			}
+			c.appendChild(bottomRow);
+		}
+		function blowOutCandle(idx, candleEl, flameEl) {
+			if (!candlesBlown[idx]) {
+				candlesBlown[idx] = true;
+				flameEl.style.display = 'none';
+				candleEl.style.opacity = 0.4;
+				updateCandleMessage(idx+1);
+			}
+			if (candlesBlown.every(Boolean)) {
+				setTimeout(()=>goToStep(3), 1200);
+			}
+		}
+		function updateCandleMessage(idx) {
+			const msg = idx ? sweetMessages[idx] : '';
+			document.querySelector('.candle-message').textContent = msg;
+		}
+		// --- Step 3: Yes/No (playful) ---
+		document.querySelector('.step3 .yes-btn').onclick = () => goToStep(4);
+		document.querySelector('.step3 .no-btn').onclick = function() {
+			noClickCount++;
+			const msg = noClickMessages[(noClickCount-1)%noClickMessages.length];
+			document.querySelector('.step3 .no-msg').textContent = msg;
+			this.style.width = (80 - noClickCount*5) + 'px';
+			if (parseInt(this.style.width) < 40) this.style.width = '40px';
+			this.style.transform = `translateX(${Math.random()*60-30}px)`;
+		};
+		// --- Step 4: Letter ---
+		const envelope = document.querySelector('.envelope');
+		const letter = document.querySelector('.letter');
+		envelope.onclick = function() {
+			envelope.classList.add('opened');
+			letter.classList.add('visible');
+			playAudio(2);
+		};
+		// --- Audio ---
+		function playAudio(track) {
+			const a1 = document.getElementById('audio1');
+			const a2 = document.getElementById('audio2');
+			if (track === 1) {
+				a2.pause(); a2.currentTime = 0;
+				a1.volume = 1; a1.currentTime = 0; a1.play();
+				audio1Playing = true; audio2Playing = false;
+			} else {
+				a1.pause(); a1.currentTime = 0;
+				a2.volume = 1; a2.currentTime = 0; a2.play();
+				audio2Playing = true; audio1Playing = false;
+			}
+		}
+		function stopAllAudio() {
+			document.getElementById('audio1').pause();
+			document.getElementById('audio2').pause();
+			audio1Playing = audio2Playing = false;
+		}
+		// --- Stars & Particles ---
+		function initializeStars() {
+			const bg = document.querySelector('.star-bg');
+			for (let i=0; i<200; i++) {
+				const s = document.createElement('div');
+				s.className = 'star';
+				s.style.width = s.style.height = (Math.random()*2+1)+'px';
+				s.style.left = Math.random()*100+'vw';
+				s.style.top = Math.random()*100+'vh';
+				s.style.animationDelay = (Math.random()*3)+'s';
+				bg.appendChild(s);
+			}
+		}
+		function createShootingStars() {
+			function shoot() {
+				const s = document.createElement('div');
+				s.className = 'shooting-star';
+				s.style.top = (Math.random()*80+10)+'vh';
+				s.style.left = (Math.random()*60)+'vw';
+				document.body.appendChild(s);
+				setTimeout(()=>s.remove(), 1200);
+			}
+			for (let i=0; i<5; i++) setTimeout(shoot, i*400);
+			setInterval(shoot, 3000);
+		}
+		function createParticles() {
+			const p = document.querySelector('.particles');
+			for (let i=0; i<20; i++) {
+				const h = document.createElement('div');
+				h.className = 'heart';
+				h.innerHTML = '❤';
+				h.style.left = Math.random()*100+'vw';
+				h.style.top = Math.random()*100+'vh';
+				h.style.fontSize = (Math.random()*1.5+1)+'rem';
+				p.appendChild(h);
+			}
+		}
+		// --- Init ---
+		window.addEventListener('DOMContentLoaded', () => {
+			initializeStars();
+			createShootingStars();
+			createParticles();
+			setupCandles();
+			bindRecordClick();
+		});
+	</script>
+</body>
+</html>

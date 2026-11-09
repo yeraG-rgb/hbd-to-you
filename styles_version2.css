@@ -1,0 +1,17 @@
+/* styles_Version2.css */
+body {
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    color: #222;
+    margin: 0;
+    padding: 0;
+}
+h1 {
+    color: #3366cc;
+    margin-top: 2rem;
+    text-align: center;
+}
+p {
+    text-align: center;
+    margin-top: 1rem;
+}
