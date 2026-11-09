@@ -35,41 +35,59 @@ const envelope=document.querySelector('.envelope'),letter=document.querySelector
 function openLetter(){envelope.classList.add('opened');letter.classList.add('visible');const a1=document.getElementById('audio1'),a2=document.getElementById('audio2');a1.pause();a1.currentTime=0;a2.currentTime=0;a2.play().catch(()=>{});}
 envelope.addEventListener('click',openLetter);envelope.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLetter();}});
 function stopAllAudio(){document.getElementById('audio1').pause();document.getElementById('audio2').pause();}
-// A shuffled depth-first carve makes a moderately challenging perfect maze: every passage, including the cat's cell, is reachable.
+// Shuffled depth-first maze carving guarantees a connected, solvable route.
 const canvas=document.getElementById('maze-game'),ctx=canvas.getContext('2d');
-const cols=17,rows=13,tile=28;
-const maze=Array.from({length:rows},()=>Array(cols).fill(1));
+const cols=17,rows=13,tile=28,maze=Array.from({length:13},()=>Array(17).fill(1));
 function carveMaze(x,y){maze[y][x]=0;const directions=[[0,-2],[2,0],[0,2],[-2,0]];for(let i=directions.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[directions[i],directions[j]]=[directions[j],directions[i]];}for(const [dx,dy] of directions){const nx=x+dx,ny=y+dy;if(nx>0&&nx<cols-1&&ny>0&&ny<rows-1&&maze[ny][nx]===1){maze[y+dy/2][x+dx/2]=0;carveMaze(nx,ny);}}}
 carveMaze(1,1);
-const player={x:1,y:1,step:0},goal={x:cols-2,y:rows-2};maze[goal.y][goal.x]=0;
-let mazeWon=false;
+const player={x:1,y:1,step:0,facing:'right'},goal={x:cols-2,y:rows-2};maze[goal.y][goal.x]=0;
+let mazeWon=false,winAnimationStarted=false;
 const restartButton=document.getElementById('maze-restart'),continueButton=document.getElementById('maze-continue');
 function pixel(x,y,w,h,color){ctx.fillStyle=color;ctx.fillRect(Math.round(x),Math.round(y),w,h);}
-// Pixel-art stegosaurus inspired by the supplied image: low body, arched back plates, four legs and a long spiked tail.
-function drawStegosaurus(){const x=player.x*tile,y=player.y*tile,walk=player.step%2;const g='#70b93b',light='#9bd94e',pale='#c8ed64',dark='#4c912f';
-// tail and body, facing right toward the cat
-pixel(x+19,y+15,6,5,g);pixel(x+23,y+12,4,4,light);pixel(x+26,y+9,2,4,pale);pixel(x+28,y+6,2,5,pale);
-pixel(x+5,y+13,17,9,g);pixel(x+7,y+11,13,9,light);pixel(x+9,y+9,10,7,g);pixel(x+12,y+7,7,5,light);pixel(x+14,y+5,4,5,g);pixel(x+8,y+16,16,5,pale);
-// layered dorsal plates along its arched back
-pixel(x+8,y+10,2,3,dark);pixel(x+10,y+7,2,4,g);pixel(x+13,y+4,2,4,g);pixel(x+16,y+6,2,4,light);pixel(x+19,y+9,2,3,g);
-// head, eye and friendly snout
-pixel(x+2,y+14,6,5,light);pixel(x,y+15,4,3,pale);pixel(x+3,y+14,1,1,dark);
-// legs animate a little on each step
-pixel(x+7,y+20,4,5,walk?g:dark);pixel(x+10,y+22,4,3,light);pixel(x+17,y+20,4,5,walk?dark:g);pixel(x+19,y+22,4,3,light);
-}
-function drawCat(){const x=goal.x*tile,y=goal.y*tile;pixel(x+6,y+12,16,11,'#f3dfc1');pixel(x+6,y+6,7,9,'#f3dfc1');pixel(x+17,y+6,7,9,'#f3dfc1');pixel(x+7,y+2,5,6,'#f3dfc1');pixel(x+18,y+2,5,6,'#f3dfc1');pixel(x+9,y+11,2,2,'#332b37');pixel(x+17,y+11,2,2,'#332b37');pixel(x+13,y+15,3,2,'#db8291');pixel(x+7,y+23,5,3,'#f3dfc1');pixel(x+18,y+23,5,3,'#f3dfc1');pixel(x+21,y+17,5,2,'#f3dfc1');pixel(x+25,y+15,2,4,'#f3dfc1');}
-function renderMaze(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#351043';ctx.fillRect(0,0,canvas.width,canvas.height);for(let y=0;y<rows;y++){for(let x=0;x<cols;x++){const px=x*tile,py=y*tile;if(maze[y][x]){pixel(px,py,tile,tile,'#5d2a7a');pixel(px+3,py+3,tile-6,tile-6,'#71358e');pixel(px+5,py+5,5,5,'#81439a');}else{pixel(px,py,tile,tile,'#42134f');if((x+y)%2===0)pixel(px+5,py+5,3,3,'#4d1a5d');}}}drawCat();drawStegosaurus();if(mazeWon){ctx.fillStyle='rgba(25,8,35,.76)';ctx.fillRect(28,145,420,70);ctx.fillStyle='#fff';ctx.font='bold 22px Georgia';ctx.textAlign='center';ctx.fillText('You found the cat! 💜',canvas.width/2,188);}}
-function movePlayer(dx,dy){if(mazeWon)return;const x=player.x+dx,y=player.y+dy;if(x<0||y<0||x>=cols||y>=rows||maze[y][x])return;player.x=x;player.y=y;player.step++;if(x===goal.x&&y===goal.y){mazeWon=true;continueButton.style.display='inline-block';}renderMaze();}
-function resetMaze(){player.x=1;player.y=1;player.step=0;mazeWon=false;continueButton.style.display='none';renderMaze();}
-const directions={ArrowUp:[0,-1],w:[0,-1],ArrowDown:[0,1],s:[0,1],ArrowLeft:[-1,0],a:[-1,0],ArrowRight:[1,0],d:[1,0]};
-window.addEventListener('keydown',e=>{const direction=directions[e.key]||directions[e.key.toLowerCase()];if(!direction||!document.querySelector('.step1').classList.contains('active'))return;e.preventDefault();movePlayer(...direction);});
+// Pixel stegosaurus, drawn facing right and flipped when it travels left.
+function drawStegosaurus(){const x=player.x*tile,y=player.y*tile,walk=player.step%2;ctx.save();if(player.facing==='left'){ctx.translate(2*x+tile,0);ctx.scale(-1,1);}const g='#70b93b',light='#9bd94e',pale='#c8ed64',dark='#4c912f';pixel(x+19,y+15,6,5,g);pixel(x+23,y+12,4,4,light);pixel(x+26,y+9,2,4,pale);pixel(x+28,y+6,2,5,pale);pixel(x+5,y+13,17,9,g);pixel(x+7,y+11,13,9,light);pixel(x+9,y+9,10,7,g);pixel(x+12,y+7,7,5,light);pixel(x+14,y+5,4,5,g);pixel(x+8,y+16,16,5,pale);pixel(x+8,y+10,2,3,dark);pixel(x+10,y+7,2,4,g);pixel(x+13,y+4,2,4,g);pixel(x+16,y+6,2,4,light);pixel(x+19,y+9,2,3,g);pixel(x+2,y+14,6,5,light);pixel(x,y+15,4,3,pale);pixel(x+3,y+14,1,1,dark);pixel(x+7,y+20,4,5,walk?g:dark);pixel(x+10,y+22,4,3,light);pixel(x+17,y+20,4,5,walk?dark:g);pixel(x+19,y+22,4,3,light);ctx.restore();}
+// Gray tabby pixel cat with pointed ears, black outline, cream chest, eyes and pink nose, matching the reference.
+function drawCat(){const ox=goal.x*tile,oy=goal.y*tile,s=2;const art=[
+'....BBBB....BBBB....',
+'...BAGGBB..BBGGBB...',
+'...BAGGGBBBB G G B...',
+'..BBGGGGBBBBBGGGGBB..',
+'.BBGGGGGGGGGGGGGGBB.',
+'BBGGYGGGGGGGGGYGGBB',
+'BBGGYGGGGGGGGGYGGBB',
+'BBGGGGGGPPPPGGGGGGBB',
+'.BBGGGGGGP PGGGGGBB.',
+'..BBBBBBBBBBBBBBBB..',
+'....BBBBBBBBBBBB....',
+'...BBCCCCCCCCCCBB...',
+'..BBCCCCCCCCCCCCBB..',
+'.BBCCCCCCCCCCCCCCBB.',
+'BBGGCCCCCCCCCCCCGGBB',
+'BBGGGCCCCCCCCCCGGGBB',
+'.BBGGGCCCCCCCCGGGBB.',
+'..BBGGGCCCCCCGGGBB..',
+'...BBGGGCCCCGGGBB...',
+'..BBGGG......GGGBB..',
+'.BBGG..........GGBB.',
+'BB................BB'];
+const palette={B:'#17151c',A:'#aaa6a8',G:'#777477',Y:'#f5edc8',P:'#ed8ca2',C:'#f1e7c9',' ':'#777477'};
+const unit=1.25,artW=art[0].length*unit,artH=art.length*unit,startX=ox+(tile-artW)/2,startY=oy+(tile-artH)/2;
+for(let r=0;r<art.length;r++){for(let c=0;c<art[r].length;c++){const ch=art[r][c];if(ch==='.')continue;if(ch===' '){pixel(startX+c*unit,startY+r*unit,unit,unit,'#777477');continue;}pixel(startX+c*unit,startY+r*unit,unit,unit,palette[ch]);}}
+// Simple visible pink nose/muzzle accent.
+pixel(ox+12,oy+15,4,2,'#ee91a5');}
+function drawPixelHeart(cx,cy,scale,color){const rows=['.##.##.','#######','#######','.#####.','..###..','...#...'];for(let y=0;y<rows.length;y++)for(let x=0;x<rows[y].length;x++)if(rows[y][x]==='#')pixel(cx+x*scale,cy+y*scale,scale,scale,color);}
+function renderMaze(time=0){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#351043';ctx.fillRect(0,0,canvas.width,canvas.height);for(let y=0;y<rows;y++){for(let x=0;x<cols;x++){const px=x*tile,py=y*tile;if(maze[y][x]){pixel(px,py,tile,tile,'#5d2a7a');pixel(px+3,py+3,tile-6,tile-6,'#71358e');pixel(px+5,py+5,5,5,'#81439a');}else{pixel(px,py,tile,tile,'#42134f');if((x+y)%2===0)pixel(px+5,py+5,3,3,'#4d1a5d');}}}drawCat();drawStegosaurus();if(mazeWon){const centerX=goal.x*tile+tile/2,centerY=goal.y*tile-3;for(let i=0;i<5;i++){const phase=(time/240+i*.8)%3;const heartY=centerY-phase*8;const drift=Math.sin(time/300+i)*5;drawPixelHeart(centerX-18+drift,heartY,2,i%2?'#ff88bc':'#ffb3d1');}ctx.fillStyle='rgba(25,8,35,.76)';ctx.fillRect(28,145,420,70);ctx.fillStyle='#fff';ctx.font='bold 22px Georgia';ctx.textAlign='center';ctx.fillText('You found the cat! 💜',canvas.width/2,188);}}
+function animateWin(time){if(!mazeWon)return;renderMaze(time);requestAnimationFrame(animateWin);}
+function movePlayer(dx,dy){if(mazeWon)return;const x=player.x+dx,y=player.y+dy;if(x<0||y<0||x>=cols||y>=rows||maze[y][x])return;player.x=x;player.y=y;player.step++;if(dx)player.facing=dx>0?'right':'left';if(x===goal.x&&y===goal.y){mazeWon=true;continueButton.style.display='inline-block';if(!winAnimationStarted){winAnimationStarted=true;requestAnimationFrame(animateWin);}}renderMaze();}
+function resetMaze(){player.x=1;player.y=1;player.step=0;player.facing='right';mazeWon=false;winAnimationStarted=false;continueButton.style.display='none';renderMaze();}
+const keyDirections={ArrowUp:[0,-1],w:[0,-1],ArrowDown:[0,1],s:[0,1],ArrowLeft:[-1,0],a:[-1,0],ArrowRight:[1,0],d:[1,0]};
+window.addEventListener('keydown',e=>{const direction=keyDirections[e.key]||keyDirections[e.key.toLowerCase()];if(!direction||!document.querySelector('.step1').classList.contains('active'))return;e.preventDefault();movePlayer(...direction);});
 [['maze-up',0,-1],['maze-down',0,1],['maze-left',-1,0],['maze-right',1,0]].forEach(([id,dx,dy])=>document.getElementById(id).addEventListener('click',()=>movePlayer(dx,dy)));
 let touchX=0,touchY=0;canvas.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX;touchY=e.changedTouches[0].clientY;},{passive:true});canvas.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchX,dy=e.changedTouches[0].clientY-touchY;if(Math.max(Math.abs(dx),Math.abs(dy))<12)return;if(Math.abs(dx)>Math.abs(dy))movePlayer(dx>0?1:-1,0);else movePlayer(0,dy>0?1:-1);},{passive:true});
-restartButton.onclick=()=>{resetMaze();};continueButton.onclick=()=>goToStep(2);
+restartButton.onclick=resetMaze;continueButton.onclick=()=>goToStep(2);
 function makeDecorations(){const bg=document.querySelector('.star-bg'),particles=document.querySelector('.particles');for(let i=0;i<100;i++){const star=document.createElement('span');star.className='star';const size=Math.random()*2+1;star.style.width=size+'px';star.style.height=size+'px';star.style.left=Math.random()*100+'vw';star.style.top=Math.random()*100+'vh';star.style.animationDelay=Math.random()*3+'s';bg.appendChild(star);}for(let i=0;i<18;i++){const heart=document.createElement('span');heart.className='heart';heart.textContent='❤';heart.style.left=Math.random()*100+'vw';heart.style.animationDelay=Math.random()*5+'s';particles.appendChild(heart);}}
 const record=document.getElementById('vinyl-record');function playSong(){const audio=document.getElementById('audio1'),status=document.querySelector('.now-playing');if(audio.paused){audio.play().then(()=>{record.classList.add('playing');status.style.display='block';}).catch(()=>{});}else{audio.pause();record.classList.remove('playing');status.style.display='none';}audio.onended=()=>{record.classList.remove('playing');status.style.display='none';};}
-record.addEventListener('click',playSong);
-makeDecorations();setupCandles();resetMaze();
+record.addEventListener('click',playSong);makeDecorations();setupCandles();resetMaze();
 </script>
 </body>
 </html>
