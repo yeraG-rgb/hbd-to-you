@@ -12,7 +12,7 @@ html,body{height:100%}body{font-family:Georgia,serif;background:linear-gradient(
 <div class="star-bg"></div><div class="sun"></div><div class="moon"></div><div class="particles"></div>
 <div class="main">
 <div class="step step0 active"><h1 class="title">Happy birthday baby 🐌🐱</h1><div class="message">I like you so much and i adore you. You light up my day and i hope you like what ive made<br><br>Ready?</div><div class="btn-row"><button class="yes-btn">Yes</button><button class="no-btn">No</button></div><div class="no-msg" style="min-height:2em"></div></div>
-<div class="step step1"><h1 class="title">Help the dino reach the cat! 🦖🐱</h1><div class="game-instructions">Jump over the rocks and make it to the cat at the end of the road!</div><canvas id="dino-game" class="game-canvas" width="500" height="250" aria-label="Pixel dinosaur game. Press Space, Up Arrow, or tap to jump over obstacles and reach the cat."></canvas><div class="game-controls">Press <strong>Space</strong> or <strong>↑</strong> to jump — tap the game on mobile.</div><div class="game-actions"><button id="game-restart" style="display:none">Play again</button><button id="game-continue" style="display:none">Continue</button></div><div class="record" id="vinyl-record" title="Click to play!" aria-label="Play the birthday song"></div><div class="message" style="text-align:center">Click the vinyl to play your song!</div><div class="now-playing" style="display:none;margin:10px 0;color:#ffd700;font-weight:bold;text-align:center">Now Playing: Grentperez - My Heart It Beats For You</div></div>
+<div class="step step1"><h1 class="title">Maze puzzle: find the cat! 🦖🐱</h1><div class="game-instructions">Use arrow keys or swipe to move the dino through the maze and reach the cat at the end.</div><canvas id="maze-game" class="game-canvas" width="500" height="250" aria-label="Maze puzzle game"></canvas><div class="game-controls">Move with WASD, arrow keys, or swipe.</div><div class="game-actions"><button id="maze-restart" style="display:none">Restart</button><button id="maze-continue" style="display:none">Continue</button></div><div class="record" id="vinyl-record" title="Click to play!" aria-label="Play the birthday song"></div><div class="message" style="text-align:center">Click the vinyl to play your song!</div><div class="now-playing" style="display:none;margin:10px 0;color:#ffd700;font-weight:bold;text-align:center">Now Playing: Grentperez - My Heart It Beats For You</div></div>
 <div class="step step2"><h1 class="title">Make a Wish &amp; Blow Out the Candles</h1><div style="text-align:center;margin-bottom:10px;font-size:1.1rem;color:#ffd700;font-weight:bold">Click each flame to reveal a message ᡣ • . • 𐭩 ♡</div><div class="cake"><div class="cake-layer cake-top"></div><div class="cake-layer cake-middle"></div><div class="cake-layer cake-bottom"></div><div class="candles"></div></div><div class="candle-message"></div></div>
 <div class="step step3"><h1 class="title">One More Question...</h1><div class="message">Do you want to see your letter?</div><div class="btn-row"><button class="yes-btn">Yes</button><button class="no-btn">No</button></div><div class="no-msg" style="min-height:2em"></div></div>
 <div class="step step4"><h1 class="title">Open Your Letter</h1><div class="envelope"></div><div style="text-align:center;color:#ffd700;font-weight:bold;margin:10px">Click the envelope to open</div><div class="letter"><p>Happy birthday, my love</p><p>I truly cherish you and will cherish you till you get tired of my weird ass. I can believe you're mine, I just want to say i like everything about you, your smile, your laugh, your style, [...]</p><p>I treasure our time together, from playing whatever, talking, and even just by sending tiktoks to each other cause i wanna laugh and share them with you and cause i thought about you when [...]</p><p>On your special day, I want you to know how much you truly mean to me, not just today but every day. You are my first thought in the morning and the last before I sleep. I care deeply about you [...]</p><p>enjoy your day and remember how incredibly special<br>you are. You deserve all the happiness in the world, my<br>love. I cant wait to spend more time with you even though we are far apart. you have my heart and one day i will kiss/ hug you any chance i get, soon. Here's to many more adventures, dreams, [...]</p></div></div>
@@ -23,7 +23,7 @@ const sweetMessages=["","I would do shit for you, watch all the marvel movies u 
 const noClickMessages=["You sure? You're gonna miss something good...","Come on, I know you're curious 😏","You're seriously saying no again?!","Alright now you're just messing with me 😤","Fine. You win. (Just kidding—click yes already 😁)","You really don't wanna see your surprise? 🤨","Are you sure you don't want to see it? 🥺","Come on, it's really special!","Pleaseee click yes 😩","You're missing out...","I'm gonna cry 😭","Okay this is just cruel 😔"];
 let wrongCounter=0,noClickCount=0,candlesBlown=Array(23).fill(false);
 function goToStep(step){document.querySelectorAll('.step').forEach((el,i)=>el.classList.toggle('active',i===step));document.body.classList.toggle('second-page',step===1);if(step===1){stopAllAudio();bindRecordClick()}if(step===2)updateCandleMessage()}
-function growYes(step,count){const yes=document.querySelector(`.step${step} .yes-btn`);yes.style.transform=`scale(${Math.min(1+count*.18,3)})`;yes.style.transformOrigin='center'}
+function growYes(step,count){const yes=document.querySelector(`.step${step} .yes-btn`);if(!yes)return;yes.style.transform=`scale(${Math.min(1+count*.18,3)})`;yes.style.transformOrigin='center'}
 document.querySelector('.step0 .yes-btn').onclick=()=>goToStep(1);
 document.querySelector('.step0 .no-btn').onclick=function(){wrongCounter++;document.querySelector('.step0 .no-msg').textContent=noClickMessages[(wrongCounter-1)%noClickMessages.length];this.classList.toggle('shrink',wrongCounter%2===1);growYes(0,wrongCounter)};
 document.querySelector('.step3 .yes-btn').onclick=()=>goToStep(4);
@@ -35,19 +35,44 @@ function updateCandleMessage(idx){document.querySelector('.candle-message').text
 const envelope=document.querySelector('.envelope'),letter=document.querySelector('.letter');envelope.onclick=()=>{envelope.classList.add('opened');letter.classList.add('visible');playAudio(2)};
 function playAudio(track){const a1=document.getElementById('audio1'),a2=document.getElementById('audio2');if(track===1){a2.pause();a2.currentTime=0;a1.currentTime=0;a1.play()}else{a1.pause();a1.currentTime=0;a2.currentTime=0;a2.play()}}
 function stopAllAudio(){document.getElementById('audio1').pause();document.getElementById('audio2').pause()}
-// Simple pixel-art side-scrolling dino game: jump the rocks and reach the cat.
-const canvas=document.getElementById('dino-game'),ctx=canvas.getContext('2d'),restartButton=document.getElementById('game-restart'),continueButton=document.getElementById('game-continue');let dinoY=0,jumpVelocity=0,gameDistance=0,gameState='playing',lastFrame=0;
-const obstacles=[150,255,360];
-function pixel(x,y,w,h,color){ctx.fillStyle=color;ctx.fillRect(Math.round(x),Math.round(y),w,h)}
-function drawDino(x,y){const base=190-y;pixel(x+8,base-40,25,30,'#4e9b38');pixel(x+24,base-52,20,20,'#55a83d');pixel(x+38,base-48,8,7,'#d7f56c');pixel(x+39,base-48,3,3,'#253d21');pixel(x+2,base-28,12,8,'#4e9b38');pixel(x+14,base-12,9,12,'#367b30');pixel(x+29,base-12,9,12,'#367b30');pixel(x+20,base-33,9,7,'#75b84a')}
-function drawCat(x,y){const base=190-y;pixel(x+8,base-31,28,25,'#f5e7cc');pixel(x+6,base-44,10,14,'#f5e7cc');pixel(x+28,base-44,10,14,'#f5e7cc');pixel(x+8,base-44,6,8,'#e7a0a9');pixel(x+30,base-44,6,8,'#e7a0a9');pixel(x+14,base-35,4,4,'#32273b');pixel(x+27,base-35,4,4,'#32273b');pixel(x+21,base-28,5,4,'#d87889');pixel(x+34,base-23,9,6,'#f5e7cc');pixel(x+12,base-8,7,9,'#f5e7cc');pixel(x+28,base-8,7,9,'#f5e7cc')}
-function drawGame(){ctx.fillStyle='#941eb0';ctx.fillRect(0,0,500,250);pixel(30,40,8,8,'#b745c3');pixel(85,65,6,6,'#b745c3');pixel(400,35,7,7,'#b745c3');ctx.fillStyle='#54205f';ctx.fillRect(0,190,500,60);ctx.fillStyle='#c1e46a';ctx.fillRect(0,188,500,5);for(let x=0;x<500;x+=35)pixel(x+((gameDistance*2)%35),213,15,4,'#8e39a2');const dx=40;drawDino(dx,Math.max(0,dinoY));if(gameState==='playing'){for(const ox of obstacles){const x=ox-gameDistance;if(x>20&&x<490){pixel(x,165,12,23,'#e6ed76');pixel(x-5,173,22,10,'#e6ed76')}}const catX=465-gameDistance;drawCat(catX,0);if(catX<dx+42&&catX>dx-18){gameState='won';continueButton.style.display='inline-block';ctx.fillStyle='#fff';ctx.font='bold 20px Georgia';ctx.textAlign='center';ctx.fillText('You found the cat! 💜',250,80);return}for(const ox of obstacles){const x=ox-gameDistance;if(x<dx+39&&x+18>dx+8&&dinoY<18){gameState='lost';restartButton.style.display='inline-block';ctx.fillStyle='#fff';ctx.font='bold 22px Georgia';ctx.textAlign='center';ctx.fillText('Oops! Try again!',250,90);return}}}else if(gameState==='won'){drawCat(420,0);ctx.fillStyle='#fff';ctx.font='bold 20px Georgia';ctx.textAlign='center';ctx.fillText('You found the cat! 💜',250,80)}}
-function gameFrame(timestamp){const dt=Math.min((timestamp-lastFrame)/16.67||1,2);lastFrame=timestamp;if(gameState==='playing'){gameDistance+=1.35*dt;if(jumpVelocity){dinoY+=jumpVelocity*dt;jumpVelocity-=.72*dt;if(dinoY<=0){dinoY=0;jumpVelocity=0}}}drawGame();requestAnimationFrame(gameFrame)}
-function jump(){if(gameState==='playing'&&dinoY===0)jumpVelocity=9.5}
-window.addEventListener('keydown',e=>{if(e.code==='Space'||e.code==='ArrowUp'){if(document.querySelector('.step1').classList.contains('active')){e.preventDefault();jump()}}});canvas.addEventListener('pointerdown',jump);
-restartButton.onclick=()=>{gameDistance=0;dinoY=0;jumpVelocity=0;gameState='playing';restartButton.style.display='none';continueButton.style.display='none'};
-continueButton.onclick=()=>goToStep(2);
-window.addEventListener('DOMContentLoaded',()=>{const bg=document.querySelector('.star-bg'),particles=document.querySelector('.particles');for(let i=0;i<200;i++){const s=document.createElement('div');s.className='star';s.style.width=s.style.height=(Math.random()*2+1)+'px';s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';s.style.animationDelay=Math.random()*3+'s';bg.appendChild(s)}for(let i=0;i<20;i++){const h=document.createElement('div');h.className='heart';h.textContent='❤';h.style.left=Math.random()*100+'vw';h.style.top=Math.random()*100+'vh';particles.appendChild(h)}setupCandles();bindRecordClick();requestAnimationFrame(gameFrame)});
+// Pixel maze puzzle: move the dino through the maze to the cat.
+const mazeCanvas=document.getElementById('maze-game');
+const mazeCtx=mazeCanvas.getContext('2d');
+const mazeRows=[
+'################',
+'#S....#......##',
+'#.##.#.###.##.#',
+'#....#...#....#',
+'###.##.#.####.#',
+'#...#..#....#.#',
+'#.#.###.##.#..#',
+'#.#.....#..#..#',
+'#.#####.#.##..#',
+'#.....#....#..#',
+'###.#.######..#',
+'#...#....#....G',
+'################'
+];
+const mazeCols=mazeRows[0].length;
+const mazeTile=32;
+const player={x:1,y:1};
+const goal={x:mazeRows[mazeRows.length-2].indexOf('G'),y:mazeRows.length-2};
+const mazeRestart=document.getElementById('maze-restart');
+const mazeContinue=document.getElementById('maze-continue');
+let mazeWon=false;
+function resetMaze(){player.x=1;player.y=1;mazeWon=false;mazeRestart.style.display='none';mazeContinue.style.display='none';renderMaze();}
+function isWall(x,y){if(x<0||y<0||x>=mazeCols||y>=mazeRows.length)return true;return mazeRows[y][x]==='#';}
+function movePlayer(dx,dy){if(mazeWon)return;const nx=player.x+dx,ny=player.y+dy;if(!isWall(nx,ny)){player.x=nx;player.y=ny;if(player.x===goal.x&&player.y===goal.y){mazeWon=true;mazeContinue.style.display='inline-block';}}renderMaze();}
+function drawPixel(x,y,w,h,color){mazeCtx.fillStyle=color;mazeCtx.fillRect(Math.round(x),Math.round(y),w,h)}
+function drawDino(x,y){const px=x*mazeTile+6,py=y*mazeTile+6;drawPixel(px,py+10,16,14,'#64b738');drawPixel(px+9,py,18,12,'#7ad84a');drawPixel(px+14,py-6,10,8,'#9eea68');drawPixel(px+2,py+16,6,8,'#5aa336');drawPixel(px+18,py+16,6,8,'#5aa336');drawPixel(px+10,py+2,4,4,'#3a4f20');drawPixel(px+18,py+2,4,4,'#3a4f20');drawPixel(px+9,py+6,4,4,'#d4f95a');}
+function drawCat(x,y){const px=x*mazeTile+6,py=y*mazeTile+6;drawPixel(px+2,py+8,22,16,'#f3d9b0');drawPixel(px,py,10,12,'#f3d9b0');drawPixel(px+18,py,10,12,'#f3d9b0');drawPixel(px+4,py-8,6,8,'#f6e4be');drawPixel(px+18,py-8,6,8,'#f6e4be');drawPixel(px+10,py+12,6,5,'#e594a2');drawPixel(px+4,py+18,6,6,'#f3d9b0');drawPixel(px+18,py+18,6,6,'#f3d9b0');drawPixel(px+10,py+2,4,4,'#312d38');drawPixel(px+18,py+2,4,4,'#312d38');}
+function renderMaze(){mazeCtx.clearRect(0,0,mazeCanvas.width,mazeCanvas.height);mazeCtx.fillStyle='#3d0f4c';mazeCtx.fillRect(0,0,mazeCanvas.width,mazeCanvas.height);for(let y=0;y<mazeRows.length;y++){for(let x=0;x<mazeCols;x++){const cell=mazeRows[y][x];const px=x*mazeTile+2,py=y*mazeTile+2;if(cell==='#'){mazeCtx.fillStyle='#5d2a7a';mazeCtx.fillRect(px,py,mazeTile-4,mazeTile-4);}else{mazeCtx.fillStyle='#3d0f4c';mazeCtx.fillRect(px,py,mazeTile-4,mazeTile-4);}}
+if(mazeWon){drawCat(goal.x,goal.y);}else{drawCat(goal.x,goal.y);}drawDino(player.x,player.y);if(mazeWon){mazeCtx.fillStyle='rgba(255,255,255,.9)';mazeCtx.font='bold 20px Georgia';mazeCtx.textAlign='center';mazeCtx.fillText('You found the cat! 💜',mazeCanvas.width/2,30);}}
+window.addEventListener('keydown',function(e){const key=e.key.toLowerCase();if(!['arrowup','arrowdown','arrowleft','arrowright','w','a','s','d'].includes(key))return;const dirs={arrowup:[0,-1],arrowdown:[0,1],arrowleft:[-1,0],arrowright:[1,0],w:[0,-1],s:[0,1],a:[-1,0],d:[1,0]};const [dx,dy]=dirs[key];movePlayer(dx,dy);e.preventDefault();});
+let touchStartX=0,touchStartY=0;mazeCanvas.addEventListener('touchstart',function(e){const t=e.changedTouches[0];touchStartX=t.clientX;touchStartY=t.clientY;},false);mazeCanvas.addEventListener('touchend',function(e){const t=e.changedTouches[0];const dx=t.clientX-touchStartX;const dy=t.clientY-touchStartY;if(Math.abs(dx)>Math.abs(dy)){movePlayer(dx>0?1:-1,0);}else{movePlayer(0,dy>0?1:-1);}},false);
+mazeRestart.onclick=resetMaze;
+mazeContinue.onclick=()=>goToStep(2);
+resetMaze();
 </script>
 </body>
 </html>
