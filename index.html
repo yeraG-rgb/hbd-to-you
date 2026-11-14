@@ -167,8 +167,7 @@
     }
 
     #welcome {
-      background:
-        linear-gradient(180deg, #d7e9ff 0%, #d9cdff 34%, #a8f0ff 100%);
+      background: linear-gradient(180deg, #d7e9ff 0%, #d9cdff 34%, #a8f0ff 100%);
     }
     .welcome-card {
       max-width: 760px;
@@ -176,8 +175,7 @@
     }
 
     #landscape {
-      background:
-        linear-gradient(180deg, #6ecdfb 0 40%, #7fd2c3 40% 58%, #8fd76b 58% 70%, #5a7d54 70% 100%);
+      background: linear-gradient(180deg, #6ecdfb 0 40%, #7fd2c3 40% 58%, #8fd76b 58% 70%, #5a7d54 70% 100%);
     }
     .nature-scene {
       position: absolute;
@@ -297,8 +295,7 @@
     }
 
     #cake-page {
-      background:
-        linear-gradient(180deg, #f6d9a8 0%, #f9bfd3 52%, #a797db 100%);
+      background: linear-gradient(180deg, #f6d9a8 0%, #f9bfd3 52%, #a797db 100%);
     }
     .cake-screen {
       width: min(960px, 96vw);
@@ -433,8 +430,7 @@
     }
 
     #bird-page {
-      background:
-        linear-gradient(180deg, #6f74d8 0%, #a39bf6 42%, #dce5ff 100%);
+      background: linear-gradient(180deg, #6f74d8 0%, #a39bf6 42%, #dce5ff 100%);
     }
     .bird-scene {
       background: linear-gradient(180deg, #dff2ff 0%, #fce7ff 52%, #cfe9ff 100%);
@@ -499,84 +495,86 @@
       0%, 100% { transform: translateY(0) translateX(0); }
       50% { transform: translateY(-12px) translateX(10px); }
     }
-    .wing {
-      transform-origin: 52% 62%;
-      animation: flap 0.28s steps(2, end) infinite alternate;
-    }
-    @keyframes flap {
-      0% { transform: rotate(-18deg) translateY(0); }
-      100% { transform: rotate(18deg) translateY(8px); }
-    }
-    .envelope {
-      animation: hover 1.2s ease-in-out infinite;
-      transform-origin: center;
-    }
-    @keyframes hover {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-    .bird-caption {
-      margin: 4px auto 18px;
-      font-size: clamp(1rem, 2vw, 1.24rem);
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      color: var(--ink);
-      text-transform: uppercase;
-    }
 
-    #letter-page {
-      background:
-        linear-gradient(180deg, #d8f3d2 0%, #f3d4d7 52%, #ffe9b6 100%);
-    }
     .letter-card {
-      width: min(860px, 94vw);
-      background: rgba(255, 250, 234, 0.96);
+      background: #fff5d8;
       border: 4px solid var(--ink);
-      box-shadow: 8px 8px 0 rgba(23,36,58,0.42);
-      padding: clamp(20px, 3vw, 36px);
-      position: relative;
-      overflow: hidden;
-      border-radius: 0;
-    }
-    .letter-card h1 {
-      text-align: center;
-      margin-bottom: 18px;
-    }
-    .letter {
-      font-family: "Courier New", monospace;
-      font-size: clamp(0.98rem, 1.7vw, 1.2rem);
-      line-height: 1.8;
-      white-space: pre-line;
-      color: var(--ink);
-      max-width: 700px;
-      margin: 0 auto;
+      box-shadow: 8px 8px 0 rgba(23, 36, 58, 0.34);
+      padding: clamp(16px, 3vw, 28px);
       text-align: left;
-      text-shadow: 1px 1px 0 rgba(255,255,255,0.4);
+      max-width: 740px;
+      margin: 18px auto 0;
+      color: var(--ink);
     }
-    .flower-cluster {
+    .letter-card h3 {
+      margin: 0 0 12px;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .letter-card p {
+      margin: 0 0 14px;
+      line-height: 1.7;
+      font-size: clamp(0.98rem, 1.8vw, 1.08rem);
+      font-weight: 700;
+    }
+    .letter-card p:last-child { margin-bottom: 0; }
+    .pixel-flower {
+      position: absolute;
+      width: 42px;
+      height: 42px;
+      opacity: 0.82;
+      background: transparent;
+      filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.2));
+      animation: sway 4s ease-in-out infinite alternate;
+    }
+    .pixel-flower::before,
+    .pixel-flower::after {
+      content: "";
       position: absolute;
       inset: 0;
-      pointer-events: none;
-      z-index: 0;
     }
-    .flower {
-      position: absolute;
-      bottom: -10px;
-      font-size: clamp(30px, 5vw, 58px);
-      opacity: 0.92;
-      animation: sway 2.8s ease-in-out infinite alternate;
+    .pixel-flower::before {
+      background:
+        radial-gradient(circle, #ffd95d 0 22%, transparent 22% 100%),
+        radial-gradient(circle, #ff7bb4 0 19%, transparent 19% 100%),
+        radial-gradient(circle, #ff7bb4 0 19%, transparent 19% 100%),
+        radial-gradient(circle, #ff7bb4 0 19%, transparent 19% 100%),
+        radial-gradient(circle, #ff7bb4 0 19%, transparent 19% 100%);
+      background-repeat: no-repeat;
+      background-position: center,
+        50% 6%, 6% 50%, 50% 94%, 94% 50%;
+      background-size: 24% 24%, 26% 26%, 26% 26%, 26% 26%, 26% 26%;
+    }
+    .pixel-flower::after {
+      background: linear-gradient(180deg, transparent 0 30%, #67b987 30% 100%);
+      width: 6px;
+      height: 20px;
+      left: 50%;
+      top: 56%;
+      transform: translateX(-50%);
+      border-radius: 0;
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.08);
     }
     @keyframes sway {
-      0% { transform: rotate(-12deg) translateY(0); }
-      100% { transform: rotate(12deg) translateY(-10px); }
+      0% { transform: rotate(-4deg) translateY(0); }
+      100% { transform: rotate(4deg) translateY(-6px); }
     }
 
-    @media (max-width: 740px) {
-      .cake-box { grid-template-columns: 1fr; }
-      .cake-stage { min-height: 270px; }
+    @media (max-width: 760px) {
+      .cake-box {
+        grid-template-columns: 1fr;
+      }
+      .message-card {
+        min-height: 150px;
+      }
     }
-    @media (prefers-reduced-motion: reduce) {
-      * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    @media (max-width: 560px) {
+      .panel { width: min(92vw, 640px); }
+      .btn { padding: 10px 14px; }
+      .nav .btn { font-size: 0.72rem; }
+      .vinyl-wrap { width: min(190px, 62vw); }
+      .song-state { letter-spacing: 0.08em; }
     }
   </style>
 </head>
@@ -585,117 +583,133 @@
     <div class="hearts-layer" aria-hidden="true" id="hearts-layer"></div>
     <div class="panel welcome-card">
       <p class="eyebrow">A little birthday adventure</p>
-      <h1>Happy birthday,<br>my love 💙</h1>
-      <p class="subtitle">A tiny world made just for you — full of love, music, cake wishes, and the sweetest little note from my heart.</p>
+      <h1>Happy Birthday, Baby 💙</h1>
+      <p class="subtitle">I like you so much and I adore you. You light up my day, and I hope you like the little birthday quest I made for you.</p>
       <div class="btn-row">
-        <button class="btn" data-target="landscape">Start the adventure ✨</button>
+        <button class="btn" id="start" type="button">Start the adventure</button>
       </div>
     </div>
   </div>
 
   <div class="screen" id="landscape">
     <div class="nature-scene"></div>
-    <svg class="mountains" viewBox="0 0 900 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <path d="M0 360L130 210L200 292L280 164L360 278L420 206L470 250L560 180L620 280L700 196L780 290L900 220V520H0Z" fill="#3f6d8a" />
-      <path d="M0 390L90 264L160 320L220 240L300 340L400 180L470 266L530 214L620 340L700 236L800 344L900 240V520H0Z" fill="#2d4f74" />
-      <path d="M0 450Q160 420 240 438Q350 450 420 428Q500 410 590 440Q670 462 770 430Q840 412 900 436V520H0Z" fill="#7dbf57" />
-      <path d="M0 470Q120 456 210 472Q300 490 420 470Q530 450 620 472Q700 488 790 470Q840 460 900 474V520H0Z" fill="#8dc55c" />
-      <path d="M0 520H900V520H0Z" fill="#81553c" />
-      <path d="M0 514Q120 500 220 516Q300 528 420 510Q550 490 620 516Q720 540 900 510V520H0Z" fill="#633b26" />
+    <svg class="mountains" viewBox="0 0 768 288" preserveAspectRatio="xMidYMid slice" shape-rendering="crispEdges" aria-hidden="true">
+      <rect width="768" height="288" fill="transparent"/>
+      <path d="M0 220 L90 100 L170 170 L220 90 L300 200 L380 110 L430 170 L520 90 L630 210 L720 120 L768 220 L768 288 L0 288 Z" fill="#215c8a"/>
+      <path d="M0 230 L80 145 L135 190 L205 120 L285 210 L360 130 L460 220 L505 170 L585 230 L660 140 L768 230 L768 288 L0 288 Z" fill="#1e496c"/>
+      <path d="M0 260 H768 V288 H0 Z" fill="#7aa638"/>
+      <path d="M0 266 H768 V288 H0 Z" fill="#557f25"/>
+      <g fill="#8bcf59">
+        <rect x="0" y="258" width="32" height="8"/>
+        <rect x="40" y="254" width="28" height="12"/>
+        <rect x="83" y="260" width="30" height="8"/>
+        <rect x="124" y="255" width="26" height="12"/>
+        <rect x="170" y="260" width="30" height="8"/>
+        <rect x="217" y="254" width="30" height="12"/>
+        <rect x="260" y="259" width="36" height="9"/>
+        <rect x="318" y="255" width="34" height="11"/>
+        <rect x="368" y="258" width="32" height="8"/>
+        <rect x="420" y="252" width="28" height="12"/>
+        <rect x="462" y="262" width="34" height="6"/>
+        <rect x="516" y="256" width="26" height="12"/>
+        <rect x="560" y="260" width="32" height="8"/>
+        <rect x="608" y="255" width="30" height="12"/>
+        <rect x="648" y="259" width="30" height="9"/>
+        <rect x="690" y="255" width="26" height="11"/>
+      </g>
     </svg>
-
-    <div class="panel" style="max-width: 820px; position: relative; z-index: 2;">
-      <p class="eyebrow">Page 02 · summer sky</p>
-      <h1 style="font-size: clamp(2rem, 4vw, 3.2rem);">A little song for you 🎶</h1>
-
-      <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 20px; align-items: center; margin-top: 10px;">
-        <div style="text-align: left;">
-          <p class="subtitle" style="text-align: left;">The best part of my day is talking to you. I made you a little summer moment full of love and music.</p>
-          <div class="btn-row" style="justify-content: flex-start; margin-top: 18px;">
-            <button class="btn" id="music-toggle" aria-pressed="false">▶ Play our song</button>
-          </div>
-          <div class="song-state" id="music-state">The record is waiting for you</div>
-        </div>
-
-        <div class="vinyl-wrap" id="vinyl-wrap">
-          <div class="vinyl" id="vinyl" aria-label="Vinyl playing animation"></div>
-          <div class="needle-arm" aria-hidden="true"></div>
-          <div aria-hidden="true" style="position:absolute; inset:0; pointer-events:none;">
-            <span class="note">♪</span>
-            <span class="note">♫</span>
-            <span class="note">♪</span>
-          </div>
-        </div>
-      </div>
-      <audio id="song" preload="auto" src="my-heart-it-beats-for-you.mp3" loop></audio>
+    <div class="vinyl-wrap" id="vinyl-wrap">
+      <div class="vinyl" id="vinyl"></div>
+      <div class="needle-arm"></div>
+      <div class="note">♪</div>
+      <div class="note">♫</div>
+      <div class="note">♪</div>
     </div>
-
-    <div class="nav">
-      <button class="btn" data-target="welcome">← Back</button>
-      <button class="btn" data-target="cake-page">Next: cake →</button>
+    <div class="song-state" id="song-state">Tap the record to play</div>
+    <audio id="song" src="my-heart-it-beats-for-you.mp3" preload="none" loop></audio>
+    <div class="btn-row">
+      <button class="btn" id="to-cake" type="button">Continue to cake</button>
     </div>
   </div>
 
   <div class="screen" id="cake-page">
-    <div class="sweets" aria-hidden="true">
-      <span class="sweet" style="left: 6%; top: 16%;">🍬</span>
-      <span class="sweet" style="right: 8%; top: 18%; animation-delay: 1s;">🍫</span>
-      <span class="sweet" style="left: 12%; bottom: 18%; animation-delay: 2s;">🍭</span>
-      <span class="sweet" style="right: 12%; bottom: 20%; animation-delay: 0.8s;">🍬</span>
-    </div>
-
+    <div class="sweets" aria-hidden="true" id="sweets"></div>
     <div class="cake-screen">
       <div class="cake-box">
         <div class="cake-stage">
-          <div class="cake-area" id="cake-trigger" aria-label="Tap the cake to light the candles" tabindex="0" role="button">
-            <svg viewBox="0 0 340 300" aria-hidden="true">
-              <g shape-rendering="crispEdges" stroke="#1f1d25" stroke-width="5" stroke-linejoin="round">
-                <rect x="36" y="214" width="268" height="26" fill="#7d5b48"/>
-                <rect x="52" y="184" width="236" height="32" fill="#e7bf9f"/>
-                <rect x="62" y="160" width="216" height="26" fill="#f8a7b8"/>
-                <rect x="48" y="130" width="244" height="32" fill="#e4c29f"/>
-                <rect x="56" y="104" width="228" height="28" fill="#f7a7c2"/>
-                <rect x="74" y="78" width="192" height="28" fill="#f1c8b1"/>
-                <rect x="82" y="62" width="176" height="20" fill="#f298bb"/>
-                <rect x="80" y="18" width="180" height="18" fill="#f5e3ee"/>
-                <rect x="86" y="10" width="16" height="18" fill="#8bd8eb"/>
-                <rect x="136" y="10" width="16" height="18" fill="#8bd8eb"/>
-                <rect x="184" y="10" width="16" height="18" fill="#8bd8eb"/>
-                <rect x="232" y="10" width="16" height="18" fill="#8bd8eb"/>
-                <rect x="102" y="38" width="14" height="18" fill="#f8d45e"/>
-                <rect x="150" y="38" width="14" height="18" fill="#f8d45e"/>
-                <rect x="198" y="38" width="14" height="18" fill="#f8d45e"/>
-                <rect x="246" y="38" width="14" height="18" fill="#f8d45e"/>
+          <div class="cake-area" id="cake-area" tabindex="0" aria-label="Birthday cake. Press to reveal candles.">
+            <svg viewBox="0 0 400 300" shape-rendering="crispEdges" aria-hidden="true">
+              <g fill="#7a5e4a">
+                <rect x="70" y="200" width="260" height="26"/>
+                <rect x="94" y="160" width="212" height="28"/>
+                <rect x="118" y="120" width="164" height="30"/>
               </g>
-              <g fill="#f3d0d3">
-                <rect x="70" y="210" width="14" height="10"/>
-                <rect x="110" y="212" width="14" height="10"/>
-                <rect x="150" y="210" width="14" height="10"/>
-                <rect x="190" y="212" width="14" height="10"/>
-                <rect x="230" y="210" width="14" height="10"/>
-                <rect x="260" y="210" width="14" height="10"/>
+              <g fill="#f4a8b6">
+                <rect x="52" y="180" width="296" height="44"/>
+                <rect x="74" y="146" width="252" height="28"/>
+                <rect x="98" y="112" width="204" height="30"/>
+              </g>
+              <g fill="#f8d0d8">
+                <rect x="62" y="210" width="276" height="14"/>
+                <rect x="84" y="170" width="232" height="12"/>
+                <rect x="108" y="134" width="184" height="12"/>
+              </g>
+              <g fill="#5a3e29">
+                <rect x="110" y="118" width="12" height="10"/>
+                <rect x="146" y="118" width="12" height="10"/>
+                <rect x="184" y="118" width="12" height="10"/>
+                <rect x="222" y="118" width="12" height="10"/>
+                <rect x="260" y="118" width="12" height="10"/>
+                <rect x="98" y="152" width="12" height="10"/>
+                <rect x="130" y="152" width="12" height="10"/>
+                <rect x="162" y="152" width="12" height="10"/>
+                <rect x="194" y="152" width="12" height="10"/>
+                <rect x="226" y="152" width="12" height="10"/>
+                <rect x="258" y="152" width="12" height="10"/>
+                <rect x="70" y="212" width="12" height="10"/>
+                <rect x="112" y="212" width="12" height="10"/>
+                <rect x="154" y="212" width="12" height="10"/>
+                <rect x="196" y="212" width="12" height="10"/>
+                <rect x="238" y="212" width="12" height="10"/>
+                <rect x="280" y="212" width="12" height="10"/>
+                <rect x="322" y="212" width="12" height="10"/>
+              </g>
+              <g fill="#94d8ef">
+                <rect x="120" y="52" width="12" height="54"/>
+                <rect x="188" y="48" width="12" height="60"/>
+                <rect x="256" y="52" width="12" height="54"/>
+              </g>
+              <g fill="#ffcd57">
+                <rect x="122" y="38" width="8" height="16"/>
+                <rect x="190" y="34" width="8" height="16"/>
+                <rect x="258" y="38" width="8" height="16"/>
               </g>
             </svg>
-
-            <div class="candles" id="candles">
-              <span class="candle" style="left: 28%; top: 8%;"></span>
-              <span class="candle" style="left: 39%; top: 10%;"></span>
-              <span class="candle" style="left: 50%; top: 7%;"></span>
-              <span class="candle" style="left: 61%; top: 9%;"></span>
-            </div>
+            <div class="candles" id="candles" aria-live="polite"></div>
           </div>
         </div>
-
         <div class="message-card">
-          <h2>Birthday wishes</h2>
-          <div class="cake-message" id="cake-message">Tap the cake to light the candles and read your sweet messages 💖</div>
+          <h2>Birthday Wishes</h2>
+          <div class="cake-message" id="cake-message">Tap the cake to reveal the candles.</div>
         </div>
       </div>
+      <div class="btn-row">
+        <button class="btn" id="to-maze" type="button">Continue to maze</button>
+      </div>
     </div>
+  </div>
 
-    <div class="nav">
-      <button class="btn" data-target="landscape">← Back</button>
-      <button class="btn" data-target="bird-page">Next: bird →</button>
+  <div class="screen" id="maze-screen">
+    <div class="panel">
+      <p class="eyebrow">Level 02 · Pixel Garden</p>
+      <h1>Find the snail! 🦕 → 🐌</h1>
+      <p class="subtitle">Guide the little stegosaurus through the maze to its snail friend.</p>
+      <canvas id="maze" width="544" height="416" style="max-width:100%; display:block; margin:18px auto 10px; border:4px solid #111; background:#a9d173; image-rendering:pixelated;" aria-label="Maze game"></canvas>
+      <div class="btn-row">
+        <button class="btn" id="restart" type="button">Restart maze</button>
+        <button class="btn" id="to-bird" type="button">Continue</button>
+      </div>
+      <p class="subtitle" id="win-msg" style="min-height:1.6em; margin-top:14px; color:#143550;"></p>
     </div>
   </div>
 
@@ -704,146 +718,114 @@
       <div class="cloud one"></div>
       <div class="cloud two"></div>
       <div class="bird-stage">
-        <svg class="pixel-bird" viewBox="0 0 420 240" aria-label="Pixel bird carrying an envelope">
-          <g shape-rendering="crispEdges">
-            <g class="wing" fill="#1e8fe5" stroke="#0e1016" stroke-width="4">
-              <rect x="70" y="90" width="90" height="20"/>
-              <rect x="50" y="110" width="115" height="20"/>
-              <rect x="36" y="130" width="120" height="18"/>
-              <rect x="64" y="130" width="58" height="26"/>
-            </g>
-            <g fill="#2ea2f7" stroke="#0e1016" stroke-width="4">
-              <rect x="135" y="90" width="80" height="28"/>
-              <rect x="150" y="68" width="80" height="22"/>
-              <rect x="175" y="54" width="72" height="18"/>
-              <rect x="185" y="108" width="78" height="26"/>
-              <rect x="200" y="130" width="72" height="18"/>
-              <rect x="215" y="148" width="62" height="18"/>
-            </g>
-            <g fill="#f3f6ff" stroke="#0e1016" stroke-width="4">
-              <rect x="166" y="96" width="78" height="40"/>
-              <rect x="200" y="112" width="72" height="38"/>
-              <rect x="230" y="120" width="54" height="32"/>
-            </g>
-            <g fill="#efb94b" stroke="#0e1016" stroke-width="4">
-              <rect x="212" y="108" width="12" height="12"/>
-            </g>
-            <g fill="#0e1016" stroke="#0e1016" stroke-width="4">
-              <rect x="184" y="104" width="12" height="12"/>
-            </g>
-            <g fill="#f4d17a" stroke="#0e1016" stroke-width="4">
-              <rect x="192" y="84" width="12" height="12"/>
-            </g>
-            <g class="envelope" transform="translate(250 120)" fill="#fff3d4" stroke="#0e1016" stroke-width="4">
-              <rect x="0" y="0" width="88" height="60"/>
-              <path d="M6 10L44 40L82 10" fill="none"/>
-              <path d="M6 52L30 35M82 52L58 35" fill="none"/>
-              <rect x="38" y="25" width="12" height="12" fill="#ef8cb0"/>
-            </g>
+        <svg class="pixel-bird" viewBox="0 0 200 120" shape-rendering="crispEdges" aria-label="Pixel blue bird with letter">
+          <g fill="#111111">
+            <rect x="60" y="60" width="12" height="12"/>
+            <rect x="72" y="60" width="12" height="12"/>
+            <rect x="84" y="60" width="12" height="12"/>
+            <rect x="96" y="60" width="12" height="12"/>
+            <rect x="108" y="60" width="12" height="12"/>
+            <rect x="120" y="60" width="12" height="12"/>
+            <rect x="132" y="60" width="12" height="12"/>
+            <rect x="144" y="60" width="12" height="12"/>
+            <rect x="156" y="60" width="12" height="12"/>
+            <rect x="72" y="48" width="12" height="12"/>
+            <rect x="84" y="48" width="12" height="12"/>
+            <rect x="96" y="48" width="12" height="12"/>
+            <rect x="108" y="48" width="12" height="12"/>
+            <rect x="120" y="48" width="12" height="12"/>
+            <rect x="132" y="48" width="12" height="12"/>
+            <rect x="144" y="48" width="12" height="12"/>
+            <rect x="108" y="36" width="12" height="12"/>
+            <rect x="120" y="36" width="12" height="12"/>
+            <rect x="132" y="36" width="12" height="12"/>
+            <rect x="36" y="72" width="12" height="12"/>
+            <rect x="48" y="72" width="12" height="12"/>
+            <rect x="60" y="72" width="12" height="12"/>
+            <rect x="144" y="72" width="12" height="12"/>
+            <rect x="156" y="72" width="12" height="12"/>
+            <rect x="168" y="72" width="12" height="12"/>
+          </g>
+          <g fill="#3fa6ef">
+            <rect x="60" y="48" width="12" height="12"/>
+            <rect x="72" y="48" width="12" height="12"/>
+            <rect x="84" y="48" width="12" height="12"/>
+            <rect x="96" y="48" width="12" height="12"/>
+            <rect x="108" y="48" width="12" height="12"/>
+            <rect x="120" y="48" width="12" height="12"/>
+            <rect x="132" y="48" width="12" height="12"/>
+            <rect x="144" y="48" width="12" height="12"/>
+            <rect x="48" y="60" width="12" height="12"/>
+            <rect x="60" y="60" width="12" height="12"/>
+            <rect x="72" y="60" width="12" height="12"/>
+            <rect x="84" y="60" width="12" height="12"/>
+            <rect x="96" y="60" width="12" height="12"/>
+            <rect x="108" y="60" width="12" height="12"/>
+            <rect x="120" y="60" width="12" height="12"/>
+            <rect x="132" y="60" width="12" height="12"/>
+            <rect x="144" y="60" width="12" height="12"/>
+            <rect x="156" y="60" width="12" height="12"/>
+            <rect x="60" y="72" width="12" height="12"/>
+            <rect x="72" y="72" width="12" height="12"/>
+            <rect x="84" y="72" width="12" height="12"/>
+            <rect x="96" y="72" width="12" height="12"/>
+            <rect x="108" y="72" width="12" height="12"/>
+            <rect x="120" y="72" width="12" height="12"/>
+            <rect x="132" y="72" width="12" height="12"/>
+            <rect x="144" y="72" width="12" height="12"/>
+          </g>
+          <g fill="#ffffff">
+            <rect x="72" y="72" width="12" height="12"/>
+            <rect x="84" y="72" width="12" height="12"/>
+            <rect x="96" y="72" width="12" height="12"/>
+            <rect x="108" y="72" width="12" height="12"/>
+            <rect x="120" y="72" width="12" height="12"/>
+            <rect x="132" y="72" width="12" height="12"/>
+            <rect x="144" y="72" width="12" height="12"/>
+          </g>
+          <g fill="#ffca28">
+            <rect x="156" y="72" width="12" height="12"/>
+          </g>
+          <g fill="#111111">
+            <rect x="168" y="72" width="12" height="12"/>
+          </g>
+          <g fill="#3fa6ef">
+            <rect x="36" y="60" width="12" height="12"/>
+            <rect x="24" y="72" width="12" height="12"/>
+          </g>
+          <g fill="#111111">
+            <rect x="24" y="84" width="12" height="12"/>
+            <rect x="12" y="84" width="12" height="12"/>
+          </g>
+          <g fill="#3fa6ef">
+            <rect x="156" y="48" width="12" height="12"/>
+            <rect x="168" y="60" width="12" height="12"/>
+            <rect x="180" y="72" width="12" height="12"/>
           </g>
         </svg>
+        <button class="btn" id="open-letter" type="button" style="position:absolute; right:52px; bottom:18px;">Open letter</button>
       </div>
-      <p class="bird-caption">A special delivery from my heart to yours 💌</p>
-      <div class="btn-row">
-        <button class="btn" data-target="letter-page">Open the letter 💙</button>
-      </div>
-    </div>
-
-    <div class="nav">
-      <button class="btn" data-target="cake-page">← Back</button>
     </div>
   </div>
 
-  <div class="screen" id="letter-page">
-    <div class="flower-cluster" aria-hidden="true">
-      <span class="flower" style="left: 8%;">🌼</span>
-      <span class="flower" style="left: 24%; animation-delay: 0.8s;">🌷</span>
-      <span class="flower" style="left: 48%; animation-delay: 1.4s;">🌸</span>
-      <span class="flower" style="right: 24%; animation-delay: 0.6s;">🌻</span>
-      <span class="flower" style="right: 8%; animation-delay: 1.2s;">🌷</span>
-    </div>
-
-    <div class="letter-card">
-      <p class="eyebrow" style="text-align:center;">The last page</p>
-      <h1>Happy birthday, my love 💙</h1>
-      <div class="letter">I truly cherish you and treasure our time together talking, and having fun sharing jokes.
-
-Being miles apart today is tough, especially when all I want is to hold you and celebrate in person.
-
-On your day, I want you to know how much you mean to me. You are my first thought in the morning and the last before I sleep. I care deeply about you and hope your day is full of all the happiness you deserve.
-
-You bring so much warmth and light into my life, even from afar. I’m endlessly proud of the person you are, and I’m counting down the days until I get to look into your eyes and celebrate every single moment we’ve missed.
-
-Enjoy your day and remember how incredibly special you are. Since I can't, I’m sending you all my love through the screen today. Spoil yourself, eat lots of good food, and know that I’m cheering you on from over here. I love you. 💖</div>
-    </div>
-
-    <div class="nav">
-      <button class="btn" data-target="bird-page">← Back</button>
-      <button class="btn" data-target="welcome">Read again ↻</button>
+  <div class="screen" id="letter-screen">
+    <div class="panel">
+      <p class="eyebrow">Birthday letter</p>
+      <h1>Your birthday letter 💌</h1>
+      <div class="letter-card">
+        <h3>Happy birthday, my love 💙</h3>
+        <p>I truly cherish you and treasure our time together talking, and having fun sharing jokes. Being miles apart today is tough, especially when all I want is to hold you and celebrate in person.</p>
+        <p>On your day, I want you to know how much you mean to me. You are my first thought in the morning and the last before I sleep. I care deeply about you and hope your day is full of all the happiness you deserve.</p>
+        <p>You bring so much warmth and light into my life, even from afar. I’m endlessly proud of the person you are, and I’m counting down the days until I get to look into your eyes and celebrate every single moment we’ve missed.</p>
+        <p>Enjoy your day and remember how incredibly special you are. Since I can't, I’m sending you all my love through the screen today. Spoil yourself, eat lots of good food, and know that I’m cheering you on from over here. I love you. 💖</p>
+      </div>
     </div>
   </div>
 
   <script>
-    const screens = Array.from(document.querySelectorAll('.screen'));
-
-    function showScreen(id) {
-      screens.forEach((screen) => {
-        screen.classList.toggle('active', screen.id === id);
-      });
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    document.querySelectorAll('[data-target]').forEach((button) => {
-      button.addEventListener('click', () => showScreen(button.dataset.target));
-    });
-
+    const screens = [...document.querySelectorAll('.screen')];
     const heartsLayer = document.getElementById('hearts-layer');
-    for (let i = 0; i < 20; i++) {
-      const heart = document.createElement('div');
-      heart.className = 'heart-float';
-      heart.textContent = i % 2 === 0 ? '❤' : '♥';
-      heart.style.left = `${Math.random() * 100}%`;
-      heart.style.setProperty('--xmove', `${(Math.random() * 90 - 45).toFixed(2)}px`);
-      heart.style.animationDuration = `${7 + Math.random() * 8}s`;
-      heart.style.animationDelay = `${(Math.random() * 6).toFixed(2)}s`;
-      heartsLayer.appendChild(heart);
-    }
-
-    const song = document.getElementById('song');
-    const toggle = document.getElementById('music-toggle');
-    const musicState = document.getElementById('music-state');
-    const vinyl = document.getElementById('vinyl');
-    const vinylWrap = document.getElementById('vinyl-wrap');
-
-    async function setMusicPlaying(play) {
-      if (play) {
-        try {
-          await song.play();
-          vinyl.classList.add('is-playing');
-          vinylWrap.classList.add('is-playing');
-          toggle.textContent = '❚❚ Pause our song';
-          toggle.setAttribute('aria-pressed', 'true');
-          musicState.textContent = 'Now playing · just for you';
-        } catch (error) {
-          musicState.textContent = 'Tap play again to start the song';
-        }
-      } else {
-        song.pause();
-        vinyl.classList.remove('is-playing');
-        vinylWrap.classList.remove('is-playing');
-        toggle.textContent = '▶ Play our song';
-        toggle.setAttribute('aria-pressed', 'false');
-        musicState.textContent = 'The record is waiting for you';
-      }
-    }
-
-    toggle.addEventListener('click', () => {
-      const isPlaying = !song.paused;
-      setMusicPlaying(!isPlaying);
-    });
-
-    song.addEventListener('ended', () => setMusicPlaying(false));
-
+    const sweetChars = ['🍬', '🍫', '🍭', '🍪', '💖', '🍩'];
     const cakeMessages = [
       'I love you baby i cant wait to kiss you',
       'You make my days brighter by being with me.',
@@ -862,38 +844,258 @@ Enjoy your day and remember how incredibly special you are. Since I can't, I’m
       'I’ll always be cheering you on.',
       'Your smile makes everything brighter.',
       'everyday im glad i get to know you more and more',
-      'I cant wait to kiss you and hold you',
+      'I cant wait to kiss you ad hold you',
       'I make me so happy that an idiot like me gets loved by a dork like you',
       'Pinky promise i will always try to make you smile'
     ];
 
-    const cakeTrigger = document.getElementById('cake-trigger');
-    const candles = document.getElementById('candles');
-    const cakeMessage = document.getElementById('cake-message');
-    let cakeIndex = 0;
-    let cakeLit = false;
-
-    function readNextMessage() {
-      cakeMessage.textContent = cakeMessages[cakeIndex];
-      cakeIndex = (cakeIndex + 1) % cakeMessages.length;
+    function showScreen(id) {
+      screens.forEach(screen => screen.classList.toggle('active', screen.id === id));
     }
 
-    function lightCake() {
-      if (!cakeLit) {
-        cakeLit = true;
-        candles.classList.add('show');
-        cakeMessage.textContent = 'Make a wish, my love ✨';
-      }
-      readNextMessage();
+    for (let i = 0; i < 18; i++) {
+      const heart = document.createElement('span');
+      heart.className = 'heart-float';
+      heart.textContent = '❤';
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.animationDuration = `${8 + Math.random() * 12}s`;
+      heart.style.animationDelay = `${Math.random() * 4}s`;
+      heart.style.setProperty('--xmove', `${(Math.random() * 140 - 70).toFixed(1)}px`);
+      heartsLayer.appendChild(heart);
     }
 
-    cakeTrigger.addEventListener('click', lightCake);
-    cakeTrigger.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        lightCake();
+    for (let i = 0; i < 18; i++) {
+      const sweet = document.createElement('span');
+      sweet.className = 'sweet';
+      sweet.textContent = sweetChars[i % sweetChars.length];
+      sweet.style.left = `${Math.random() * 96}%`;
+      sweet.style.top = `${Math.random() * 80}%`;
+      sweet.style.animationDelay = `${Math.random() * 4}s`;
+      document.getElementById('sweets').appendChild(sweet);
+    }
+
+    const vinyl = document.getElementById('vinyl');
+    const vinylWrap = document.getElementById('vinyl-wrap');
+    const song = document.getElementById('song');
+    const songState = document.getElementById('song-state');
+    vinyl.addEventListener('click', () => {
+      if (song.paused) {
+        song.play().then(() => {
+          vinyl.classList.add('is-playing');
+          vinylWrap.classList.add('is-playing');
+          songState.textContent = 'Now playing';
+        }).catch(() => {
+          songState.textContent = 'Audio blocked';
+        });
+      } else {
+        song.pause();
+        vinyl.classList.remove('is-playing');
+        vinylWrap.classList.remove('is-playing');
+        songState.textContent = 'Paused';
       }
     });
+
+    document.getElementById('start').addEventListener('click', () => showScreen('landscape'));
+    document.getElementById('to-cake').addEventListener('click', () => showScreen('cake-page'));
+    document.getElementById('to-maze').addEventListener('click', () => showScreen('maze-screen'));
+    document.getElementById('to-bird').addEventListener('click', () => showScreen('bird-page'));
+    document.getElementById('open-letter').addEventListener('click', () => showScreen('letter-screen'));
+
+    const candledContainer = document.getElementById('candles');
+    const cakeArea = document.getElementById('cake-area');
+    const cakeMessage = document.getElementById('cake-message');
+    let cakeRevealed = false;
+    let messageIndex = 0;
+
+    function revealCakeCandles() {
+      if (cakeRevealed) return;
+      cakeRevealed = true;
+      candledContainer.innerHTML = '';
+      const positions = [
+        [56, 52], [92, 48], [128, 52], [164, 48], [200, 52], [236, 48], [272, 52], [308, 48], [344, 52]
+      ];
+      positions.forEach(([x, y], i) => {
+        const candle = document.createElement('div');
+        candle.className = 'candle';
+        candle.style.left = `${x}px`;
+        candle.style.top = `${y}px`;
+        candle.title = `Reveal message ${i + 1}`;
+        candle.addEventListener('click', () => {
+          if (i !== messageIndex) return;
+          candle.style.opacity = '0.3';
+          candle.style.filter = 'grayscale(0.8)';
+          candle.style.pointerEvents = 'none';
+          cakeMessage.textContent = cakeMessages[messageIndex];
+          messageIndex += 1;
+          if (messageIndex >= cakeMessages.length) {
+            cakeMessage.textContent = 'All my love is yours, always.';
+          }
+        });
+        candledContainer.appendChild(candle);
+      });
+      candledContainer.classList.add('show');
+      cakeMessage.textContent = 'Press the first candle to begin.';
+    }
+
+    cakeArea.addEventListener('click', revealCakeCandles);
+    cakeArea.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        revealCakeCandles();
+      }
+    });
+
+    const canvas = document.getElementById('maze');
+    const ctx = canvas.getContext('2d');
+    const cols = 17, rows = 13, tile = 32;
+    let maze = null;
+    let player = null;
+    let goal = { x: 15, y: 11 };
+    let won = false;
+
+    function carve(x, y) {
+      const dirs = [[2,0],[-2,0],[0,2],[0,-2]];
+      for (let i = dirs.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [dirs[i], dirs[j]] = [dirs[j], dirs[i]];
+      }
+      for (const [dx, dy] of dirs) {
+        const nx = x + dx, ny = y + dy;
+        if (nx < 1 || ny < 1 || nx >= cols - 1 || ny >= rows - 1) continue;
+        if (maze[ny][nx] !== 1) continue;
+        maze[y + dy / 2][x + dx / 2] = 0;
+        maze[ny][nx] = 0;
+        carve(nx, ny);
+      }
+    }
+
+    function buildMaze() {
+      maze = Array.from({ length: rows }, () => Array(cols).fill(1));
+      maze[1][1] = 0;
+      carve(1, 1);
+      maze[1][1] = 0;
+      maze[goal.y][goal.x] = 0;
+      player = { x: 1, y: 1 };
+      won = false;
+      drawMaze();
+    }
+
+    function fillBlock(x, y, w, h, color) {
+      ctx.fillStyle = color;
+      ctx.fillRect(Math.round(x), Math.round(y), w, h);
+    }
+
+    function drawBarnacleSnail() {
+      const ox = goal.x * tile;
+      const oy = goal.y * tile;
+      const shell = '#ec7d5a';
+      const body = '#d5cf6e';
+      const dark = '#4c3427';
+      const pink = '#ff97ad';
+      fillBlock(ox + 7, oy + 8, 32, 9, shell);
+      fillBlock(ox + 11, oy + 6, 20, 11, shell);
+      fillBlock(ox + 14, oy + 10, 14, 8, pink);
+      fillBlock(ox + 20, oy + 12, 8, 4, dark);
+      fillBlock(ox + 18, oy + 18, 6, 4, dark);
+      fillBlock(ox + 24, oy + 18, 6, 4, dark);
+      fillBlock(ox + 11, oy + 18, 8, 4, body);
+      fillBlock(ox + 5, oy + 12, 8, 8, body);
+    }
+
+    function drawStego() {
+      const ox = player.x * tile;
+      const oy = player.y * tile;
+      const skin = '#4ba4d8';
+      const dark = '#1d3f4f';
+      const light = '#d7f2ff';
+      fillBlock(ox + 6, oy + 16, 44, 8, skin);
+      fillBlock(ox + 10, oy + 8, 18, 12, skin);
+      fillBlock(ox + 30, oy + 8, 14, 10, skin);
+      fillBlock(ox + 14, oy + 0, 18, 10, skin);
+      fillBlock(ox + 18, oy + 4, 8, 8, light);
+      fillBlock(ox + 22, oy + 18, 8, 6, dark);
+      fillBlock(ox + 34, oy + 18, 8, 6, dark);
+      fillBlock(ox + 6, oy + 24, 10, 8, dark);
+      fillBlock(ox + 40, oy + 24, 10, 8, dark);
+      fillBlock(ox + 18, oy + 12, 8, 8, dark);
+      fillBlock(ox + 28, oy + 12, 8, 8, dark);
+      fillBlock(ox + 18, oy + 4, 8, 4, '#f3d464');
+      fillBlock(ox + 4, oy + 12, 8, 8, '#5cb4d0');
+      fillBlock(ox + 44, oy + 12, 8, 8, '#5cb4d0');
+    }
+
+    function drawMaze() {
+      if (!maze) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          const px = x * tile;
+          const py = y * tile;
+          if (maze[y][x]) {
+            fillBlock(px, py, tile, tile, '#3e5e39');
+            fillBlock(px + 3, py + 3, tile - 6, tile - 6, '#4d7c47');
+            fillBlock(px + 8, py + 8, 8, 8, '#5d8c4d');
+          } else {
+            fillBlock(px, py, tile, tile, '#b7d680');
+            if ((x + y) % 2 === 0) fillBlock(px + 5, py + 6, 3, 3, '#97c367');
+          }
+        }
+      }
+      drawBarnacleSnail();
+      drawStego();
+      if (won) {
+        ctx.fillStyle = '#ffd76b';
+        ctx.font = 'bold 22px Courier New';
+        ctx.textAlign = 'center';
+        ctx.fillText('Together! ♥', canvas.width / 2, 190);
+      }
+    }
+
+    function move(dx, dy) {
+      if (!player || won) return;
+      const nx = player.x + dx;
+      const ny = player.y + dy;
+      if (nx < 0 || ny < 0 || nx >= cols || ny >= rows) return;
+      if (maze[ny][nx] !== 0) return;
+      player.x = nx; player.y = ny;
+      if (nx === goal.x && ny === goal.y) {
+        won = true;
+        document.getElementById('win-msg').textContent = 'You found your snail friend! ♥';
+      }
+      drawMaze();
+    }
+
+    document.getElementById('restart').addEventListener('click', buildMaze);
+    document.getElementById('to-bird').addEventListener('click', () => showScreen('bird-page'));
+
+    window.addEventListener('keydown', (event) => {
+      const key = event.key.toLowerCase();
+      const moves = { arrowup:[0,-1], w:[0,-1], arrowdown:[0,1], s:[0,1], arrowleft:[-1,0], a:[-1,0], arrowright:[1,0], d:[1,0] };
+      const dir = moves[event.key.toLowerCase()] || moves[event.key];
+      if (dir && screens.some(s => s.id === 'maze-screen' && s.classList.contains('active'))) {
+        event.preventDefault();
+        move(dir[0], dir[1]);
+      }
+    });
+
+    document.getElementById('maze-screen').addEventListener('click', (event) => {
+      if (event.target.tagName === 'CANVAS') return;
+    });
+
+    let touchStartX = 0, touchStartY = 0;
+    canvas.addEventListener('touchstart', (event) => {
+      touchStartX = event.changedTouches[0].clientX;
+      touchStartY = event.changedTouches[0].clientY;
+    }, { passive: true });
+    canvas.addEventListener('touchend', (event) => {
+      const dx = event.changedTouches[0].clientX - touchStartX;
+      const dy = event.changedTouches[0].clientY - touchStartY;
+      if (Math.max(Math.abs(dx), Math.abs(dy)) < 18) return;
+      if (Math.abs(dx) > Math.abs(dy)) move(dx > 0 ? 1 : -1, 0);
+      else move(0, dy > 0 ? 1 : -1);
+    }, { passive: true });
+
+    buildMaze();
   </script>
 </body>
 </html>
